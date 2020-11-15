@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'Profile.dart';
 class Menu extends StatelessWidget {
   final String title;
 
@@ -8,6 +11,7 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uid = context.watch<AuthenticationService>().getUserId();
     return Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -36,12 +40,17 @@ class Menu extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text('Item 1'),
+                    title: Text('Profile'),
                     onTap: () {
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Profile(uid)),
+                      );
                       // Update the state of the app
                       // ...
                       // Then close the drawer
-                      Navigator.pop(context);
+                      //Navigator.pop(context);
                     },
                   ),
                   ListTile(
