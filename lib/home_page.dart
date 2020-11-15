@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
-import 'package:meet_and_eat/AddUser.dart';
 import 'package:meet_and_eat/GetUsers.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,7 +22,6 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GetUsers(),
-            //AddUser("John", "Doe", 25)
             Text(uid)
           ],
         ),
