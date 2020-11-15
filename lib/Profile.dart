@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meet_and_eat/ImagePicker.dart';
 import 'package:meet_and_eat/menu.dart';
+import 'package:meet_and_eat/RegisterProfile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,6 +41,7 @@ class Profile extends StatelessWidget {
               })
               .then((value) => {
                 print("User Added"),
+            //Reload Profile
                 Navigator.pop(context),
                 Navigator.push(
                 context,
@@ -77,7 +80,29 @@ class Profile extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    ImagePickerWidget(),
                     Text(data['name'] + " " + data['lastName']),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: Material(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        elevation: 5.0,
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RegisterProfile()),
+                            );
+                          },
+                          minWidth: 200.0,
+                          height: 42.0,
+                          child: Text(
+                            'Edit Profile',
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
