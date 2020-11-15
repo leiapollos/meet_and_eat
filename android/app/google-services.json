@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "539200068186",
+    "firebase_url": "https://meetandeat-c0c72.firebaseio.com",
+    "project_id": "meetandeat-c0c72",
+    "storage_bucket": "meetandeat-c0c72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539200068186:android:b554db5e4397667d0ad663",
+        "android_client_info": {
+          "package_name": "com.example.meet_and_eat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539200068186-rkkg6i651ahhmomjgg4l0o0qn6v2m4qv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWK-1-O25h22qm-n0pSP-vSYsAshPg6xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539200068186-rkkg6i651ahhmomjgg4l0o0qn6v2m4qv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
