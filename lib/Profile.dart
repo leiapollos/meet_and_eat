@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meet_and_eat/authentication_service.dart';
-import 'package:meet_and_eat/GetUsers.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -35,9 +34,12 @@ class Profile extends StatelessWidget {
           return users
              .doc(uid)
              .set({
-                'name': name,
-                'lastName': lastName,
-                'age': age
+              'name': name,
+              'lastName': lastName,
+              'age': age,
+              'location': "",
+              'biography': "",
+              'url': ""
               })
               .then((value) => {
                 print("User Added"),
@@ -80,7 +82,7 @@ class Profile extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ImagePickerWidget(),
+                    ImagePickerWidget(uid: uid),
                     Text(data['name'] + " " + data['lastName']),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.0),

@@ -49,12 +49,12 @@ class RegisterProfile extends StatelessWidget {
       // Call the user's CollectionReference to add a new user
       return users
           .doc(uid)
-          .set({
+          .update({
         'name': name,
         'lastName': lastName,
         'age': age,
         'location': location,
-        'biography': biography
+        'biography': biography,
       })
           .then((value) => {
         print("User Added"),

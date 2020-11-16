@@ -48,7 +48,8 @@ class GetUsers extends StatelessWidget {
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(200),
-                                child: Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
+                                child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
+                                    ? Image.network(profiles[index]['url']) : Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
                               ),
                             ),
                           ),
