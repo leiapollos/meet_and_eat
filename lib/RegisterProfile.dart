@@ -77,7 +77,7 @@ class RegisterProfile extends StatelessWidget {
           child: ListView(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ImagePickerWidget(),
+              ImagePickerWidget(uid: uid),
               SizedBox(
                 height: 8.0,
               ),
