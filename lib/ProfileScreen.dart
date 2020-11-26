@@ -32,6 +32,7 @@ class _ProfileScreen extends State<ProfileScreen>{
           if(snapshot.data.exists){
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: Color(0xff3d405b),
                 title: Text(data['name'] + "'s Profile"),
                 actions: <Widget>[
                   /*IconButton(icon: Icon(Icons.arrow_back_sharp),
@@ -43,13 +44,8 @@ class _ProfileScreen extends State<ProfileScreen>{
               body: Column(
                 children: <Widget>[
                   Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Colors.redAccent, Colors.pinkAccent]
-                          )
-                      ),
+
+                      color: Color(0xff3d405b),
                       child: Container(
                         width: double.infinity,
                         height: 350.0,
@@ -100,7 +96,9 @@ class _ProfileScreen extends State<ProfileScreen>{
                           SizedBox(
                             height: 10.0,
                           ),
-                          Text(data['biography'],
+                          Text(
+                            //data['biography'],
+                            'ME GUSTA EL CHIMO :)',
                             style: TextStyle(
                               fontSize: 22.0,
                               fontStyle: FontStyle.italic,
