@@ -31,10 +31,10 @@ class GetUsers extends StatelessWidget {
               itemBuilder: (context, index) =>
                   FlatButton(
                     onPressed: () {
-                      print("TONI SIUUUU");
+                      //print(profiles[index].id);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ProfileScreen()),
+                        MaterialPageRoute(builder: (context) => ProfileScreen(uid: profiles[index].id)),
                       );
                     },
                     child: Container(

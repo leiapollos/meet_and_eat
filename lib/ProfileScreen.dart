@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget{
+class ProfileScreen extends StatefulWidget {
+  final String uid;
+
+  const ProfileScreen ({ Key key, this.uid }): super(key: key);
+  @override
+  _ProfileScreen createState() => _ProfileScreen();
+}
+
+class _ProfileScreen extends State<ProfileScreen>{
   @override
   Widget build(BuildContext context) {
+    print(widget.uid);
     return Scaffold(
       /*appBar: AppBar(
         title: Text('Meet&Eat'),
