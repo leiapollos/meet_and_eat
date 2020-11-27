@@ -3,6 +3,7 @@ import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'AddMeal.dart';
 import 'Profile.dart';
 class Menu extends StatelessWidget {
   final String title;
@@ -54,12 +55,16 @@ class Menu extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    title: Text('Item 2'),
+                    title: Text('Add Meal'),
                     onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddMeal()),
+                      );
                       // Update the state of the app
                       // ...
                       // Then close the drawer
-                      Navigator.pop(context);
+                      //Navigator.pop(context);
                     },
                   ),
                 ],

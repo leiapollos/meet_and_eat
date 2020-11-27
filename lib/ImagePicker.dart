@@ -14,8 +14,10 @@ import 'package:provider/provider.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   final String uid;
+  final bool isMeal;
+  final bool showUploadButton;
 
-  const ImagePickerWidget ({ Key key, this.uid }): super(key: key);
+  const ImagePickerWidget ({ Key key, this.uid , this.isMeal, this.showUploadButton = true}): super(key: key);
   @override
   _ImagePickerWidget createState() => _ImagePickerWidget();
 }
@@ -25,6 +27,7 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
   String _uploadedFileURL;
   final picker = ImagePicker();
   CollectionReference users = FirebaseFirestore.instance.collection('profiles');
+  CollectionReference meals = FirebaseFirestore.instance.collection('meals');
 
   Future<void> saveImage() async {
       String imageURL = await uploadFile();
@@ -156,7 +159,7 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [ Center(
-                child: _image == null
+                child: /*_image == null
                     ? ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Image.network(data['url'], height: 160, width: 160,),//Image.asset('assets/images/chimo.png', height: 160,),
@@ -164,9 +167,16 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
                     : ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Image.file(_image, height: 160, width: 160,),
+                ),*/
+                CircleAvatar(
+                  radius: 75,
+                  backgroundImage: (_image != null)
+                      ? Image.file(_image, height: 160, width: 160,) : (data['url'] != null && data['url'].toString().isNotEmpty) ? NetworkImage(data['url']) : AssetImage('assets/images/chimo.png'),
+                  backgroundColor: Colors.blue,
                 ),
               ),
-                Padding(
+                (widget.showUploadButton) ?
+              Padding(
                   padding: const EdgeInsets.only(
                       left: 0, top: 100, right: 0, bottom: 0),
                   child: FloatingActionButton(
@@ -174,7 +184,8 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
                     tooltip: 'Pick Image',
                     child: Icon(Icons.add_a_photo),
                   ),
-                ),
+                )
+                : Container(),
               ]
             );
         }

@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:meet_and_eat/GetUsers.dart';
 import 'dart:developer';
 
+import 'ProfileScreen.dart';
+
 class HomePage extends StatelessWidget {
 
   @override
@@ -108,37 +110,45 @@ class DataSearch extends SearchDelegate<String>{
               itemBuilder: (context, index) =>
                   Container(
                     width: MediaQuery.of(context).size.width * 0.94,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      color: Colors.white,
-                      elevation: 3,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxWidth: MediaQuery.of(context).size.width * 0.28,
-                                maxHeight: MediaQuery.of(context).size.width * 0.28,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(200),
-                                child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
-                                    ? Image.network(profiles[index]['url']) : Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
+                    child: FlatButton(
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileScreen(uid: profiles[index].id)),
+                        )
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        elevation: 3,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth: MediaQuery.of(context).size.width * 0.28,
+                                  maxHeight: MediaQuery.of(context).size.width * 0.28,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(200),
+                                  child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
+                                      ? Image.network(profiles[index]['url']) : Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: ListTile(title: Text(profiles[index]['name'] + " " + profiles[index]['lastName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
-                              subtitle: Padding(
-                                padding: const EdgeInsets.only(left: 0, top: 5, right: 0, bottom: 0),
-                                child: Text(profiles[index]['age'].toString(), style: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
-                              ),),
-                          ),
-                        ],
+                            Expanded(
+                              child: ListTile(title: Text(profiles[index]['name'] + " " + profiles[index]['lastName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(left: 0, top: 5, right: 0, bottom: 0),
+                                  child: Text(profiles[index]['age'].toString(), style: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
+                                ),),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

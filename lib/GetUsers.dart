@@ -57,10 +57,11 @@ class GetUsers extends StatelessWidget {
                                   maxWidth: MediaQuery.of(context).size.width * 0.28,
                                   maxHeight: MediaQuery.of(context).size.width * 0.28,
                                 ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(200),
-                                  child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
-                                      ? Image.network(profiles[index]['url']) : Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
+                                child: CircleAvatar(
+                                  radius: 45,
+                                  backgroundImage: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
+                                      ? NetworkImage(profiles[index]['url']) : AssetImage('assets/images/chimo.png'),
+                                  backgroundColor: Colors.blue,
                                 ),
                               ),
                             ),
