@@ -18,6 +18,7 @@ class _ProfileScreen extends State<ProfileScreen>{
   @override
   Widget build(BuildContext context) {
     print(widget.uid);
+    final CategoriesScroller photosHorizontalScroller = CategoriesScroller();
     CollectionReference users = FirebaseFirestore.instance.collection('profiles');
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(widget.uid).get(),
@@ -34,6 +35,7 @@ class _ProfileScreen extends State<ProfileScreen>{
               appBar: AppBar(
                 backgroundColor: Color(0xff3d405b),
                 title: Text(data['name'] + "'s Profile"),
+                centerTitle: true,
                 actions: <Widget>[
                   /*IconButton(icon: Icon(Icons.arrow_back_sharp),
                       onPressed: (){
@@ -44,11 +46,10 @@ class _ProfileScreen extends State<ProfileScreen>{
               body: Column(
                 children: <Widget>[
                   Container(
-
-                      color: Color(0xff3d405b),
+                      color: Colors.white,
                       child: Container(
                         width: double.infinity,
-                        height: 350.0,
+                        height: 210.0,
                         child: Center(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,20 +59,23 @@ class _ProfileScreen extends State<ProfileScreen>{
                                 backgroundImage: NetworkImage(
                                   "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
                                 ),
-                                radius: 50.0,
-                              ),
-                              SizedBox(
-                                height: 10.0,
+                                radius: 70.0,
                               ),
                               Text(
                                 data['name'] + ' ' + data['lastName'],
                                 style: TextStyle(
                                   fontSize: 22.0,
-                                  color: Colors.white,
+                                  color: Color(0xff3d405b),
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5,
                                 ),
                               ),
-                              SizedBox(
-                                height: 10.0,
+                              Text(
+                                'Lisboa' + ', ' +'Portugal',///ADD LOCATION DATA
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.blueGrey,
+                                ),
                               ),
                             ],
                           ),
@@ -79,44 +83,138 @@ class _ProfileScreen extends State<ProfileScreen>{
                       )
                   ),
                   Container(
+                    //color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.grey,
+                      ),
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 16.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Bio:",
-                            style: TextStyle(
-                                color: Colors.redAccent,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 28.0
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
                             //data['biography'],
-                            'ME GUSTA EL CHIMO :)',
+                            'My name is Alice and I am  a freelance mobile app developper.\n'
+                            'if you need any mobile app for your company then contact me for more informations',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 22.0,
-                              fontStyle: FontStyle.italic,
+                              fontSize: 20.0,
                               fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                              letterSpacing: 2.0,
+                              color: Colors.blueGrey,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20.0,
+                  Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.favorite,
+                                color: Colors.blueGrey,
+                                size: 24.0,
+
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text("I am in my twenties",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.0,
+                                  color: Color(0xff3d405b),
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.favorite,
+                                color: Colors.blueGrey,
+                                size: 24.0,
+
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text("English, Spanish",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.0,
+                                  color: Color(0xff3d405b),
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.favorite,
+                                color: Colors.blueGrey,
+                                size: 24.0,
+
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text("IT Student",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.0,
+                                  color: Color(0xff3d405b),
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
+                    child: Text('Photos from ' + data['name'] + "'s dinners",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        height: 1.5,
+                        fontSize: 25.0,
+                        color: Color(0xff3d405b),
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                  photosHorizontalScroller, // HORIZONTAL SCROLLER
+                  Container(
                     width: 300.00,
-
                     child: RaisedButton(
                         onPressed: (){},
                         shape: RoundedRectangleBorder(
@@ -165,5 +263,109 @@ class _ProfileScreen extends State<ProfileScreen>{
       },
     );
 
+  }
+}
+class CategoriesScroller extends StatelessWidget {
+  const CategoriesScroller();
+  @override
+  Widget build(BuildContext context) {
+    final double categoryHeight = MediaQuery.of(context).size.height * 0.25 - 50;
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: FittedBox(
+          fit: BoxFit.fill,
+          alignment: Alignment.topCenter,
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 150,
+                margin: EdgeInsets.only(right: 10),
+                height: categoryHeight,
+                decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://n9.cl/uc1u"
+                        ),
+                        fit: BoxFit.cover
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: Center(
+                      child: Text("CHIMO",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                          textAlign: TextAlign.center),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 150,
+                margin: EdgeInsets.only(right: 10),
+                height: categoryHeight,
+                decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://n9.cl/uc1u"
+                        ),
+                        fit: BoxFit.cover
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: Center(
+                      child: Text("CHIMO",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                          textAlign: TextAlign.center),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 150,
+                margin: EdgeInsets.only(right: 10),
+                height: categoryHeight,
+                decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://n9.cl/uc1u"
+                        ),
+                        fit: BoxFit.cover
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: Center(
+                      child: Text("CHIMO",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        textAlign: TextAlign.center),
+                    ),
+                  ),
+                ),
+
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
