@@ -43,202 +43,208 @@ class _ProfileScreen extends State<ProfileScreen>{
                       })*/
                 ],
               ),
-              body: Column(
+              body: ListView(
                 children: <Widget>[
                   Container(
-                      color: Colors.white,
-                      child: Container(
-                        width: double.infinity,
-                        height: 210.0,
-                        child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                            color: Colors.white,
+                            child: Container(
+                              width: double.infinity,
+                              height: 210.0,
+                              child: Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                        "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
+                                      ),
+                                      radius: 70.0,
+                                    ),
+                                    Text(
+                                      data['name'] + ' ' + data['lastName'],
+                                      style: TextStyle(
+                                        fontSize: 22.0,
+                                        color: Color(0xff3d405b),
+                                        fontWeight: FontWeight.bold,
+                                        height: 1.5,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Lisboa' + ', ' +'Portugal',///ADD LOCATION DATA
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.blueGrey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                        ),
+                        Container(
+                          //color: Colors.white,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  //data['biography'],
+                                  'My name is Alice and I am  a freelance mobile app developper.\n'
+                                  'if you need any mobile app for your company then contact me for more informations',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.blueGrey,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
-                                ),
-                                radius: 70.0,
+                            children: [
+                              SizedBox(
+                                height: 4,
                               ),
-                              Text(
-                                data['name'] + ' ' + data['lastName'],
-                                style: TextStyle(
-                                  fontSize: 22.0,
-                                  color: Color(0xff3d405b),
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.5,
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.blueGrey,
+                                      size: 24.0,
+
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("I am in my twenties",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Color(0xff3d405b),
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Text(
-                                'Lisboa' + ', ' +'Portugal',///ADD LOCATION DATA
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blueGrey,
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.blueGrey,
+                                      size: 24.0,
+
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("English, Spanish",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Color(0xff3d405b),
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.blueGrey,
+                                      size: 24.0,
+
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("IT Student",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Color(0xff3d405b),
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      )
-                  ),
-                  Container(
-                    //color: Colors.white,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            //data['biography'],
-                            'My name is Alice and I am  a freelance mobile app developper.\n'
-                            'if you need any mobile app for your company then contact me for more informations',
+                        Container(
+                          child: Text('Photos from ' + data['name'] + "'s dinners",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold,
+                              height: 1.5,
+                              fontSize: 25.0,
+                              color: Color(0xff3d405b),
                               letterSpacing: 0.5,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 4,
                         ),
+                        photosHorizontalScroller, // HORIZONTAL SCROLLER
                         Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.favorite,
-                                color: Colors.blueGrey,
-                                size: 24.0,
-
+                          width: 300.00,
+                          child: RaisedButton(
+                              onPressed: (){},
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80.0)
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text("I am in my twenties",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15.0,
-                                  color: Color(0xff3d405b),
-                                  letterSpacing: 0.5,
+                              elevation: 0.0,
+                              padding: EdgeInsets.all(0.0),
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerRight,
+                                      end: Alignment.centerLeft,
+                                      colors: [Colors.redAccent,Colors.pinkAccent]
+                                  ),
+                                  borderRadius: BorderRadius.circular(30.0),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.favorite,
-                                color: Colors.blueGrey,
-                                size: 24.0,
-
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text("English, Spanish",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15.0,
-                                  color: Color(0xff3d405b),
-                                  letterSpacing: 0.5,
+                                child: Container(
+                                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                                  alignment: Alignment.center,
+                                  child: Text("Contact me",
+                                    style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.favorite,
-                                color: Colors.blueGrey,
-                                size: 24.0,
-
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text("IT Student",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15.0,
-                                  color: Color(0xff3d405b),
-                                  letterSpacing: 0.5,
-                                ),
-                              ),
-                            ],
+                              )
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Container(
-                    child: Text('Photos from ' + data['name'] + "'s dinners",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        height: 1.5,
-                        fontSize: 25.0,
-                        color: Color(0xff3d405b),
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ),
-                  photosHorizontalScroller, // HORIZONTAL SCROLLER
-                  Container(
-                    width: 300.00,
-                    child: RaisedButton(
-                        onPressed: (){},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)
-                        ),
-                        elevation: 0.0,
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.centerRight,
-                                end: Alignment.centerLeft,
-                                colors: [Colors.redAccent,Colors.pinkAccent]
-                            ),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                            alignment: Alignment.center,
-                            child: Text("Contact me",
-                              style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
-                            ),
-                          ),
-                        )
                     ),
                   ),
                 ],
