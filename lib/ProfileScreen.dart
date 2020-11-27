@@ -44,6 +44,8 @@ class _ProfileScreen extends State<ProfileScreen>{
                 ],
               ),
               body: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.all(15.0),
                 children: <Widget>[
                   Container(
                     child: Column(
