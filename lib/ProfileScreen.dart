@@ -43,6 +43,19 @@ class _ProfileScreen extends State<ProfileScreen>{
                       })*/
                 ],
               ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+              floatingActionButton: FloatingActionButton.extended(
+
+                backgroundColor: const Color(0xff81b29a),
+
+                onPressed: () {
+                  // Respond to button press
+                },
+                icon: Icon(Icons.add_to_home_screen_rounded),
+                label: Text("Start a chat",
+                  style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
+                ),
+              ),
               body: ListView(
                 shrinkWrap: true,
                 //padding: EdgeInsets.all(15.0),
@@ -136,7 +149,6 @@ class _ProfileScreen extends State<ProfileScreen>{
                                       size: 24.0,
 
                                     ),
-
                                     Icon(
                                       Icons.account_balance_wallet_rounded,
                                       color: Colors.blueGrey,
@@ -351,6 +363,9 @@ class _ProfileScreen extends State<ProfileScreen>{
                           color: Colors.grey,
                         ),
                         Container(
+                          height: 58,
+                        ),
+                        /*Container(
                           width: 300.00,
                           child: RaisedButton(
                               onPressed: (){},
@@ -373,7 +388,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                                 ),
                               )
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
