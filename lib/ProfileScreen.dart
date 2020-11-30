@@ -131,14 +131,14 @@ class _ProfileScreen extends State<ProfileScreen>{
                                       height: 10,
                                     ),
                                     Icon(
-                                      Icons.favorite,
+                                      Icons.ac_unit,
                                       color: Colors.blueGrey,
                                       size: 24.0,
 
                                     ),
 
                                     Icon(
-                                      Icons.favorite,
+                                      Icons.account_balance_wallet_rounded,
                                       color: Colors.blueGrey,
                                       size: 24.0,
 
@@ -158,7 +158,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                               ),
                               Container(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     SizedBox(
                                       height: 10,
@@ -205,6 +205,135 @@ class _ProfileScreen extends State<ProfileScreen>{
                           color: Colors.grey,
                         ),
                         Container(
+                          child: Text('Upcomming Meet&Eats',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              height: 1.5,
+                              fontSize: 25.0,
+                              color: Color(0xff3d405b),
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Icon(
+                                              Icons.access_time_rounded,
+                                              color: Colors.blueGrey,
+                                              size: 24.0,
+                                            ),
+                                            SizedBox(
+                                              width: 2,
+                                            ),
+                                            Text("Time",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15.0,
+                                                color: Color(0xff3d405b),
+                                                letterSpacing: 0.5,
+                                              ),
+                                            ),
+                                          ],
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.add_location_rounded,
+                                            color: Colors.blueGrey,
+                                            size: 24.0,
+                                          ),
+                                          SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text("Location",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15.0,
+                                              color: Color(0xff3d405b),
+                                              letterSpacing: 0.5,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.airline_seat_legroom_normal_sharp,
+                                            color: Colors.blueGrey,
+                                            size: 24.0,
+                                          ),
+                                          SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text("1 guest, 2 seats left",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15.0,
+                                              color: Color(0xff3d405b),
+                                              letterSpacing: 0.5,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                width: 150.00,
+                                child: RaisedButton(
+                                    onPressed: (){},
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(80.0)
+                                    ),
+                                    elevation: 0.0,
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Ink(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xff81b29a),
+                                        borderRadius: BorderRadius.circular(30.0),
+                                      ),
+                                      child: Container(
+                                        constraints: BoxConstraints(maxWidth: 150.0, minHeight: 50.0),
+                                        alignment: Alignment.center,
+                                        child: Text("Details",
+                                          style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight:FontWeight.w300),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          height: 15,
+                          color: Colors.grey,
+                        ),
+                        Container(
                           child: Text('Photos from ' + data['name'] + "'s dinners",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -220,7 +349,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                         Divider(
                           height: 15,
                           color: Colors.grey,
-                        ),// HORIZONTAL SCROLLER
+                        ),
                         Container(
                           width: 300.00,
                           child: RaisedButton(
@@ -232,11 +361,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                               padding: EdgeInsets.all(0.0),
                               child: Ink(
                                 decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.centerRight,
-                                      end: Alignment.centerLeft,
-                                      colors: [Colors.redAccent,Colors.pinkAccent]
-                                  ),
+                                  color: Color(0xff81b29a),
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 child: Container(
