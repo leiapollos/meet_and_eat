@@ -102,10 +102,10 @@ class _MealsNearby extends State<MealsNearby> {
                               if (snapshot.hasError) {
                                 return Text("Something went wrong");
                               }
-
                               if (snapshot.connectionState == ConnectionState.done) {
                                   Map<String, dynamic> data = snapshot.data.data();
-                                  return Row(
+                                  if(data.isNotEmpty && data != null)
+                                    return Row(
                                     children: [
                                       CircleAvatar(
                                         radius: 25,
@@ -116,6 +116,8 @@ class _MealsNearby extends State<MealsNearby> {
                                       Text(data['name']),
                                     ],
                                   );
+                                  else
+                                    return Text("No profile data");
                               }
                               return Text("Name");
                             }),
