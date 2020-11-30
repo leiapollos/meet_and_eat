@@ -99,7 +99,10 @@ class _AddMeal extends State<AddMeal> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Publishing Meal'),
+        backgroundColor: Color(0xff3d405b),
+        title: Text('Schedule Meet&Eat'),
+        centerTitle: true,
+
       ),
       body: Center(
         child: Padding(
@@ -122,12 +125,12 @@ class _AddMeal extends State<AddMeal> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -147,12 +150,12 @@ class _AddMeal extends State<AddMeal> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -171,12 +174,12 @@ class _AddMeal extends State<AddMeal> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -196,12 +199,12 @@ class _AddMeal extends State<AddMeal> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -223,12 +226,12 @@ class _AddMeal extends State<AddMeal> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                 ),
@@ -250,24 +253,24 @@ class _AddMeal extends State<AddMeal> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                 ),
 
               ),
               SizedBox(
-                height: 24.0,
+                height: 15.0,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.symmetric(vertical: 2.0),
                 child: Material(
-                  color: Colors.lightBlueAccent,
+                  color: Color(0xff81b29a),
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
@@ -278,6 +281,7 @@ class _AddMeal extends State<AddMeal> {
                     height: 42.0,
                     child: Text(
                       'PUBLISH',
+                      style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
                     ),
                   ),
                 ),
