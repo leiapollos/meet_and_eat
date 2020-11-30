@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meet_and_eat/home_page_content.dart';
 import 'package:meet_and_eat/menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,14 +12,41 @@ import 'dart:developer';
 import 'MealScreen.dart';
 import 'ProfileScreen.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
 
+  @override
+  _HomePage createState() => _HomePage();
+}
+
+class _HomePage extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final uid = context.watch<AuthenticationService>().getUserId();
+    List<Widget> _widgetOptions = <Widget>[
+      HomePageContent(),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          GetUsers(),
+          Text(uid)
+        ],
+      ),
+      Text(
+        'Index 2: Bookings',
+      ),
+    ];
     return Scaffold(
       drawer: Menu(title: 'Meet&Eat'),
       appBar: AppBar(
+        backgroundColor: Color(0xff3d405b),
         title: Text('Meet&Eat'),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search),
@@ -27,14 +55,25 @@ class HomePage extends StatelessWidget {
           })
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GetUsers(),
-            Text(uid)
-          ],
-        ),
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Messages',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.food_bank),
+            label: 'Bookings',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color(0xff3d405b),
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -167,7 +206,7 @@ class DataSearch extends SearchDelegate<String>{
                   itemCount: meals.length,
                   itemBuilder: (context, index) =>
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.94,
+                        width: MediaQuery.of(context).size.width * 0.95,
                         child: FlatButton(
                           onPressed: () => {
                             Navigator.push(
