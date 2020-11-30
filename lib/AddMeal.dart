@@ -104,6 +104,19 @@ class _AddMeal extends State<AddMeal> {
         centerTitle: true,
 
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+
+        backgroundColor: const Color(0xff81b29a),
+
+        onPressed: () {
+          addMeal();
+        },
+        icon: Icon(Icons.add_to_home_screen_rounded),
+        label: Text("Publish",
+          style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
+        ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -213,6 +226,19 @@ class _AddMeal extends State<AddMeal> {
               SizedBox(
                 height: 8.0,
               ),
+              Text("Leave a note about your dinner",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                  fontSize: 20.0,
+                  color: Color(0xff3d405b),
+                  letterSpacing: 0.5,
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
               TextField(
                 controller: noteController,
                 keyboardType: TextInputType.multiline,
@@ -240,12 +266,25 @@ class _AddMeal extends State<AddMeal> {
               SizedBox(
                 height: 8.0,
               ),
+              Text("Add menu",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                  fontSize: 20.0,
+                  color: Color(0xff3d405b),
+                  letterSpacing: 0.5,
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
               TextField(
                 controller: menuController,
                 keyboardType: TextInputType.multiline,
                 maxLines: 4,
                 decoration: InputDecoration(
-                  hintText: 'A Desciption of Yourself',
+                  hintText: "Share the names all of your dished and don't forget to mention main ingredients!",
                   contentPadding:
                   EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
                   border: OutlineInputBorder(
@@ -265,9 +304,9 @@ class _AddMeal extends State<AddMeal> {
 
               ),
               SizedBox(
-                height: 15.0,
+                height: 65.0,
               ),
-              Padding(
+              /*Padding(
                 padding: EdgeInsets.symmetric(vertical: 2.0),
                 child: Material(
                   color: Color(0xff81b29a),
@@ -285,7 +324,7 @@ class _AddMeal extends State<AddMeal> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
