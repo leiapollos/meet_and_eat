@@ -106,7 +106,7 @@ class _AddMeal extends State<AddMeal> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-
+        heroTag: "btn1",
         backgroundColor: const Color(0xff81b29a),
 
         onPressed: () {

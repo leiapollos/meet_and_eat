@@ -45,7 +45,7 @@ class _ProfileScreen extends State<ProfileScreen>{
               ),
               floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton.extended(
-
+                heroTag: "btn2",
                 backgroundColor: const Color(0xff81b29a),
 
                 onPressed: () {
