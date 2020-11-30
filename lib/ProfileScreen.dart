@@ -45,13 +45,14 @@ class _ProfileScreen extends State<ProfileScreen>{
               ),
               body: ListView(
                 shrinkWrap: true,
-                padding: EdgeInsets.all(15.0),
+                //padding: EdgeInsets.all(15.0),
                 children: <Widget>[
                   Container(
+                    color: Colors.white,
                     child: Column(
                       children: <Widget>[
                         Container(
-                            color: Colors.white,
+
                             child: Container(
                               width: double.infinity,
                               height: 210.0,
@@ -87,14 +88,11 @@ class _ProfileScreen extends State<ProfileScreen>{
                               ),
                             )
                         ),
+                        Divider(
+                          height: 0,
+                          color: Colors.grey,
+                        ),
                         Container(
-                          //color: Colors.white,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                          ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 16.0),
                             child: Column(
@@ -117,25 +115,53 @@ class _ProfileScreen extends State<ProfileScreen>{
                             ),
                           ),
                         ),
+                        Divider(
+                          height: 0,
+                          color: Colors.grey,
+                        ),
                         Container(
-                          child: Column(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                height: 4,
-                              ),
                               Container(
-                                child: Row(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     Icon(
                                       Icons.favorite,
                                       color: Colors.blueGrey,
                                       size: 24.0,
 
                                     ),
+
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.blueGrey,
+                                      size: 24.0,
+
+                                    ),
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.blueGrey,
+                                      size: 24.0,
+
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
                                     SizedBox(
-                                      width: 20,
+                                      height: 10,
                                     ),
                                     Text("I am in my twenties",
                                       style: TextStyle(
@@ -143,26 +169,11 @@ class _ProfileScreen extends State<ProfileScreen>{
                                         fontSize: 15.0,
                                         color: Color(0xff3d405b),
                                         letterSpacing: 0.5,
+
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.favorite,
-                                      color: Colors.blueGrey,
-                                      size: 24.0,
-
-                                    ),
                                     SizedBox(
-                                      width: 20,
+                                      height: 5,
                                     ),
                                     Text("English, Spanish",
                                       style: TextStyle(
@@ -172,24 +183,8 @@ class _ProfileScreen extends State<ProfileScreen>{
                                         letterSpacing: 0.5,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.favorite,
-                                      color: Colors.blueGrey,
-                                      size: 24.0,
-
-                                    ),
                                     SizedBox(
-                                      width: 20,
+                                      height: 5,
                                     ),
                                     Text("IT Student",
                                       style: TextStyle(
@@ -205,6 +200,10 @@ class _ProfileScreen extends State<ProfileScreen>{
                             ],
                           ),
                         ),
+                        Divider(
+                          height: 15,
+                          color: Colors.grey,
+                        ),
                         Container(
                           child: Text('Photos from ' + data['name'] + "'s dinners",
                             textAlign: TextAlign.center,
@@ -217,7 +216,11 @@ class _ProfileScreen extends State<ProfileScreen>{
                             ),
                           ),
                         ),
-                        photosHorizontalScroller, // HORIZONTAL SCROLLER
+                        photosHorizontalScroller,
+                        Divider(
+                          height: 15,
+                          color: Colors.grey,
+                        ),// HORIZONTAL SCROLLER
                         Container(
                           width: 300.00,
                           child: RaisedButton(
