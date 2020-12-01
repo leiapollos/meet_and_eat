@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
                     child: DrawerHeader(
                       margin: EdgeInsets.zero,
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Color(0xff3d405b),
                       ),
                       child: Text(
                         'Settings',

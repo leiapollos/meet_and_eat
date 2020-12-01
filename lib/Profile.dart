@@ -77,17 +77,19 @@ class Profile extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('Profile'),
+                backgroundColor: Color(0xff3d405b),
               ),
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ImagePickerWidget(uid: uid),
-                    Text(data['name'] + " " + data['lastName']),
+                    Text(data['name'] + " " + data['lastName'],
+                       style: TextStyle(color: Colors.blueGrey, fontSize: 26.0, fontWeight: FontWeight.bold,)),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.0),
                       child: Material(
-                        color: Colors.lightBlueAccent,
+                        color:Color(0xff81b29a),
                         borderRadius: BorderRadius.all(Radius.circular(30.0)),
                         elevation: 5.0,
                         child: MaterialButton(
@@ -101,6 +103,7 @@ class Profile extends StatelessWidget {
                           height: 42.0,
                           child: Text(
                             'Edit Profile',
+                             style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
@@ -114,6 +117,7 @@ class Profile extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('Profile'),
+                backgroundColor: Color(0xff3d405b),
               ),
               body: Center(
                 child: Padding(
@@ -135,12 +139,12 @@ class Profile extends StatelessWidget {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                            BorderSide(color: Color(0xff3d405b), width: 1.0),
                             borderRadius: BorderRadius.all(Radius.circular(32.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                            BorderSide(color: Color(0xff3d405b), width: 2.0),
                             borderRadius: BorderRadius.all(Radius.circular(32.0)),
                           ),
                         ),

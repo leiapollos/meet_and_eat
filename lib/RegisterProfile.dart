@@ -69,7 +69,22 @@ class RegisterProfile extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff3d405b),
         title: Text('Editing Profile'),
+        centerTitle: true,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: "btn4",
+        backgroundColor: const Color(0xff81b29a),
+
+        onPressed: () {
+         addUser();
+        },
+        icon: Icon(Icons.add_to_home_screen_rounded),
+        label: Text("Edit Info",
+          style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
+        ),
       ),
       body: Center(
         child: Padding(
@@ -92,12 +107,12 @@ class RegisterProfile extends StatelessWidget {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -116,12 +131,12 @@ class RegisterProfile extends StatelessWidget {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -141,12 +156,12 @@ class RegisterProfile extends StatelessWidget {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -166,12 +181,12 @@ class RegisterProfile extends StatelessWidget {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
@@ -193,12 +208,12 @@ class RegisterProfile extends StatelessWidget {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: Color(0xff3d405b), width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: Color(0xff3d405b), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                 ),
@@ -207,10 +222,10 @@ class RegisterProfile extends StatelessWidget {
               SizedBox(
                 height: 24.0,
               ),
-              Padding(
+             /* Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Material(
-                  color: Colors.lightBlueAccent,
+                  color: Color(0xff3d405b),
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
@@ -224,7 +239,7 @@ class RegisterProfile extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
