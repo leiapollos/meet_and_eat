@@ -178,8 +178,9 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
                 (widget.showUploadButton) ?
               Padding(
                   padding: const EdgeInsets.only(
-                      left: 0, top: 100, right: 0, bottom: 0),
+                      left: 0, top: 100, right: 100, bottom: 0),
                   child: FloatingActionButton(
+                    backgroundColor: Color(0xff3d405b),
                     onPressed: getImage,
                     tooltip: 'Pick Image',
                     child: Icon(Icons.add_a_photo),
@@ -207,8 +208,9 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
           ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 0, top: 100, right: 0, bottom: 0),
+                  left: 0, top: 100, right: 00, bottom: 0),
               child: FloatingActionButton(
+                backgroundColor: Color(0xff3d405b),
                 onPressed: getImage,
                 tooltip: 'Pick Image',
                 child: Icon(Icons.add_a_photo),
