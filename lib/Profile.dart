@@ -85,7 +85,7 @@ class Profile extends StatelessWidget {
                   children: [
                     ImagePickerWidget(uid: uid),
                     Text(data['name'] + " " + data['lastName'],
-                       style: TextStyle(color: Colors.blueGrey, fontSize: 26.0, fontWeight: FontWeight.bold,)),
+                       style: TextStyle( color: Color(0xff3d405b), fontSize: 26.0, fontWeight: FontWeight.bold,)),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.0),
                       child: Material(

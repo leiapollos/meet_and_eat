@@ -40,8 +40,46 @@ class Menu extends StatelessWidget {
                       ),
                     ),
                   ),
+
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
+                    ),
+                    radius: 60.0,
+                  ),
+                  Text(
+                    "Toni Kukoc",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      color: Color(0xff3d405b),
+                      fontWeight: FontWeight.bold,
+                      height: 1.5,
+                    ),
+                  ),
+
                   ListTile(
-                    title: Text('Profile'),
+                    title: RichText(
+                      text: TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Icon(Icons.account_circle_sharp, size: 22),
+                          ),
+                          TextSpan(
+                              text: '  Profile',
+                              style: TextStyle(fontWeight: FontWeight.normal,
+                                  height: 1.5,
+                                  fontSize: 18.0,
+                                  color: Color(0xff3d405b),
+                                  letterSpacing: 0.5)
+                          ),
+                        ],
+                      ),
+                    ),
                     onTap: () {
 
                       Navigator.push(
@@ -54,8 +92,26 @@ class Menu extends StatelessWidget {
                       //Navigator.pop(context);
                     },
                   ),
+
                   ListTile(
-                    title: Text('Add Meal'),
+                    title: RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                              child: Icon(Icons.backpack_sharp, size: 22),
+                            ),
+                            TextSpan(
+                              text: '  Schedule a Meat&Eat',
+                              style: TextStyle(fontWeight: FontWeight.normal,
+                                height: 1.5,
+                                fontSize: 18.0,
+                                color: Color(0xff3d405b),
+                                letterSpacing: 0.5)
+                            ),
+                          ],
+                        ),
+                      ),
+                    focusColor: Color(0xff3d405b),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -67,15 +123,39 @@ class Menu extends StatelessWidget {
                       //Navigator.pop(context);
                     },
                   ),
+                  ListTile(
+                    title: RichText(
+                      text: TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Icon(Icons.ac_unit_sharp, size: 22),
+                          ),
+                          TextSpan(
+                              text: '  Log out',
+                              style: TextStyle(fontWeight: FontWeight.normal,
+                                  height: 1.5,
+                                  fontSize: 18.0,
+                                  color: Color(0xff3d405b),
+                                  letterSpacing: 0.5)
+                          ),
+                        ],
+                      ),
+                    ),
+                    focusColor: Color(0xff3d405b),
+                    onTap: () {
+                      context.read<AuthenticationService>().signOut();
+
+                    },
+                  ),
                 ],
               ),
             ),
-            RaisedButton(
+            /*RaisedButton(
               onPressed: () {
                 context.read<AuthenticationService>().signOut();
               },
               child: Text("Sign out"),
-            ),
+            ),*/
           ],
         ),
       );
