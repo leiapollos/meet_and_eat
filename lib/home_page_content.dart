@@ -63,7 +63,6 @@ class _MealsNearby extends State<MealsNearby> {
           if (snapshot.hasError) {
             return Text('Something went wrong');
           }
-
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text("Loading");
           }
@@ -94,7 +93,20 @@ class _MealsNearby extends State<MealsNearby> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text(meals[index]['mealName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
+                          Container(
+                            height: 140.0,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                image: DecorationImage(
+                                    image: NetworkImage("https://n9.cl/uc1u"),
+                                    fit: BoxFit.cover
+                                )
+                            ),
+                          ),
+                          Center(
+                            child: Text(meals[index]['mealName'], textAlign: TextAlign.center,
+                                style: TextStyle(color: Color(0xff3d405b), fontSize: 20.0, fontWeight:FontWeight.bold)),
+                          ),
                           FutureBuilder<DocumentSnapshot>(
                             future: profiles.doc(meals[index].id).get(),
                             builder:
@@ -107,13 +119,18 @@ class _MealsNearby extends State<MealsNearby> {
                                   if(data.isNotEmpty && data != null)
                                     return Row(
                                     children: [
+                                      SizedBox(width: 20,),
                                       CircleAvatar(
                                         radius: 25,
                                         backgroundImage: (data['url'] != null && data['url'].toString().isNotEmpty)
                                             ? NetworkImage(data['url']) : AssetImage('assets/images/chimo.png'),
                                         backgroundColor: Colors.blue,
                                       ),
-                                      Text(data['name']),
+                                      Text("   " + data['name'], style: TextStyle(fontWeight: FontWeight.normal,
+                                          height: 1.5,
+                                          fontSize: 18.0,
+                                          color: Color(0xff3d405b),
+                                          letterSpacing: 0.5),),
                                     ],
                                   );
                                   else
@@ -121,8 +138,53 @@ class _MealsNearby extends State<MealsNearby> {
                               }
                               return Text("Name");
                             }),
-                          Text(meals[index]['date']),
-                          Text("2 guests," + meals[index]['seats'].toString() + " seats", style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),),
+                          //Text(meals[index]['date']),
+                          Row(
+                            children: [
+                              SizedBox(width: 10,),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    WidgetSpan(
+                                      child: Icon(Icons.access_time_rounded, size: 22),
+                                    ),
+                                    TextSpan(
+                                      //text: meals[index]['date'],
+                                        text: " 20-11-02 16:40",//TODO CHANGE TIME
+                                        style: TextStyle(fontWeight: FontWeight.normal,
+                                            height: 1.5,
+                                            fontSize: 18.0,
+                                            color: Color(0xff3d405b),
+                                            letterSpacing: 0.5)
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(width: 10,),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    WidgetSpan(
+                                      child: Icon(Icons.airline_seat_legroom_normal, size: 22),
+                                    ),
+                                    TextSpan(
+                                      //text: meals[index]['date'],
+                                        text: "2 guests," + meals[index]['seats'].toString() + " seats",
+                                        style: TextStyle(fontWeight: FontWeight.normal,
+                                            height: 0,
+                                            fontSize: 18.0,
+                                            color: Color(0xff3d405b),
+                                            letterSpacing: 0.5)
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

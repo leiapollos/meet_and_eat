@@ -136,7 +136,7 @@ class _SignInPage extends State<SignInPage> {
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
-                    'Log In', style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300)
+                    'Log In',style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300)
                   ),
                 ),
               ),
