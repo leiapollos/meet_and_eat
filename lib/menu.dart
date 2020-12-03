@@ -61,9 +61,9 @@ class Menu extends StatelessWidget {
                 ),
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                    data['url'],
+                    data['url'] == null || data['url'] == "" ? 'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png' : data['url'],
                   ),
-                  radius: 60.0,
+                  radius: 70.0,
                 ),
                 Text(
                   data['name'] + " " + data['lastName'],
