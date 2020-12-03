@@ -12,152 +12,171 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('profiles');
     final uid = context.watch<AuthenticationService>().getUserId();
-    return Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                // Important: Remove any padding from the ListView.
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  SizedBox(
-                    height: 80,
-                    child: DrawerHeader(
-                      margin: EdgeInsets.zero,
-                      decoration: BoxDecoration(
-                        color: Color(0xff3d405b),
-                      ),
-                      child: Text(
-                        'Settings',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ),
-                  ),
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(uid).get(),
+    builder:
+    (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
 
+    CollectionReference users = FirebaseFirestore.instance.collection('profiles');
+    if (snapshot.hasError) {
+    return Text("Something went wrong");
+    }
 
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
-                    ),
-                    radius: 60.0,
-                  ),
-                  Text(
-                    "Toni Kukoc",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 22.0,
+    if (snapshot.connectionState == ConnectionState.done) {
+    Map<String, dynamic> data = snapshot.data.data();
+    if(snapshot.data.exists){
+      return  Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the drawer if there isn't enough vertical
+      // space to fit everything.
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              // Important: Remove any padding from the ListView.
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                SizedBox(
+                  height: 80,
+                  child: DrawerHeader(
+                    margin: EdgeInsets.zero,
+                    decoration: BoxDecoration(
                       color: Color(0xff3d405b),
-                      fontWeight: FontWeight.bold,
-                      height: 1.5,
                     ),
-                  ),
-
-                  ListTile(
-                    title: RichText(
-                      text: TextSpan(
-                        children: [
-                          WidgetSpan(
-                            child: Icon(Icons.account_circle_sharp, size: 22),
-                          ),
-                          TextSpan(
-                              text: '  Profile',
-                              style: TextStyle(fontWeight: FontWeight.normal,
-                                  height: 1.5,
-                                  fontSize: 18.0,
-                                  color: Color(0xff3d405b),
-                                  letterSpacing: 0.5)
-                          ),
-                        ],
+                    child: Text(
+                      'Settings',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
                       ),
                     ),
-                    onTap: () {
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Profile(uid)),
-                      );
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      //Navigator.pop(context);
-                    },
                   ),
+                ),
 
-                  ListTile(
-                    title: RichText(
-                        text: TextSpan(
-                          children: [
-                            WidgetSpan(
-                              child: Icon(Icons.backpack_sharp, size: 22),
-                            ),
-                            TextSpan(
-                              text: '  Schedule a Meat&Eat',
-                              style: TextStyle(fontWeight: FontWeight.normal,
+
+                SizedBox(
+                  height: 20,
+                ),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    data['url'],
+                  ),
+                  radius: 60.0,
+                ),
+                Text(
+                  data['name'] + " " + data['lastName'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    color: Color(0xff3d405b),
+                    fontWeight: FontWeight.bold,
+                    height: 1.5,
+                  ),
+                ),
+
+                ListTile(
+                  title: RichText(
+                    text: TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: Icon(Icons.account_circle_sharp, size: 22),
+                        ),
+                        TextSpan(
+                            text: '  Profile',
+                            style: TextStyle(fontWeight: FontWeight.normal,
                                 height: 1.5,
                                 fontSize: 18.0,
                                 color: Color(0xff3d405b),
                                 letterSpacing: 0.5)
-                            ),
-                          ],
                         ),
-                      ),
-                    focusColor: Color(0xff3d405b),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AddMeal()),
-                      );
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      //Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: RichText(
-                      text: TextSpan(
-                        children: [
-                          WidgetSpan(
-                            child: Icon(Icons.ac_unit_sharp, size: 22),
-                          ),
-                          TextSpan(
-                              text: '  Log out',
-                              style: TextStyle(fontWeight: FontWeight.normal,
-                                  height: 1.5,
-                                  fontSize: 18.0,
-                                  color: Color(0xff3d405b),
-                                  letterSpacing: 0.5)
-                          ),
-                        ],
-                      ),
+                      ],
                     ),
-                    focusColor: Color(0xff3d405b),
-                    onTap: () {
-                      context.read<AuthenticationService>().signOut();
-
-                    },
                   ),
-                ],
-              ),
+                  onTap: () {
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Profile(uid)),
+                    );
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    //Navigator.pop(context);
+                  },
+                ),
+
+                ListTile(
+                  title: RichText(
+                    text: TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: Icon(Icons.backpack_sharp, size: 22),
+                        ),
+                        TextSpan(
+                            text: '  Schedule a Meat&Eat',
+                            style: TextStyle(fontWeight: FontWeight.normal,
+                                height: 1.5,
+                                fontSize: 18.0,
+                                color: Color(0xff3d405b),
+                                letterSpacing: 0.5)
+                        ),
+                      ],
+                    ),
+                  ),
+                  focusColor: Color(0xff3d405b),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddMeal()),
+                    );
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    //Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: RichText(
+                    text: TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: Icon(Icons.ac_unit_sharp, size: 22),
+                        ),
+                        TextSpan(
+                            text: '  Log out',
+                            style: TextStyle(fontWeight: FontWeight.normal,
+                                height: 1.5,
+                                fontSize: 18.0,
+                                color: Color(0xff3d405b),
+                                letterSpacing: 0.5)
+                        ),
+                      ],
+                    ),
+                  ),
+                  focusColor: Color(0xff3d405b),
+                  onTap: () {
+                    context.read<AuthenticationService>().signOut();
+
+                  },
+                ),
+              ],
             ),
-            /*RaisedButton(
-              onPressed: () {
-                context.read<AuthenticationService>().signOut();
-              },
-              child: Text("Sign out"),
-            ),*/
-          ],
-        ),
-      );
+          ),
+          /*RaisedButton(
+                onPressed: () {
+                  context.read<AuthenticationService>().signOut();
+                },
+                child: Text("Sign out"),
+              ),*/
+        ],
+      ),
+    );
+    }
+    }
+    return Center();
+      }
+    );
   }
 }

@@ -94,7 +94,7 @@ class _MealsNearby extends State<MealsNearby> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            height: 140.0,
+                            height: 134.0,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 image: DecorationImage(
