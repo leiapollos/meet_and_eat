@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class MealScreen extends StatefulWidget {
   final String uid;
@@ -14,7 +15,7 @@ class MealScreen extends StatefulWidget {
 }
 
 class _MealScreen extends State<MealScreen>{
-
+  DateFormat _dateFormat;
   @override
   Widget build(BuildContext context) {
     print(widget.uid);
@@ -148,7 +149,7 @@ class _MealScreen extends State<MealScreen>{
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Text("Time",
+                                      Text(new DateFormat.yMd().add_jm().format(DateTime.parse(data['date'])),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15.0,
@@ -160,7 +161,7 @@ class _MealScreen extends State<MealScreen>{
                                       SizedBox(
                                         height: 5,
                                       ),
-                                      Text("Location",
+                                      Text(data['address'],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15.0,
