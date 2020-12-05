@@ -39,7 +39,8 @@ class Profile extends StatelessWidget {
               'age': age,
               'location': "",
               'biography': "",
-              'url': ""
+              'url': "",
+              'meals': ['']
               })
               .then((value) => {
                 print("User Added"),

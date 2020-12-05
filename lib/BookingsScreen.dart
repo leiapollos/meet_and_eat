@@ -133,6 +133,14 @@ class _BookingsScreen extends State<BookingsScreen>{
           var me = snapshotUser.data?.data();
           if(me == null)
             return Center();
+          if(me['meals'].length == 0){
+            return Text("No booked meals!");
+          }
+          if(me['meals'].length == 1){
+              if(me['meals'][0] == ""){
+                return Text("No booked meals!");
+              }
+          }
           List<Widget> mealList = new List<Widget>();
           for(int i = 0; i < me['meals'].length; i++){
             var m = me['meals'][i].toString();
