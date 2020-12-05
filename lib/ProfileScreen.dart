@@ -43,19 +43,6 @@ class _ProfileScreen extends State<ProfileScreen>{
                       })*/
                 ],
               ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-              floatingActionButton: FloatingActionButton.extended(
-                heroTag: "btn2",
-                backgroundColor: const Color(0xff81b29a),
-
-                onPressed: () {
-                  // Respond to button press
-                },
-                icon: Icon(Icons.add_to_home_screen_rounded),
-                label: Text("Start a chat",
-                  style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
-                ),
-              ),
               body: ListView(
                 shrinkWrap: true,
                 //padding: EdgeInsets.all(15.0),
@@ -76,7 +63,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                                   children: <Widget>[
                                     CircleAvatar(
                                       backgroundImage: NetworkImage(
-                                        "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
+                                        data['url'] == "" ? "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg" : data['url'],
                                       ),
                                       radius: 70.0,
                                     ),
@@ -90,7 +77,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                                       ),
                                     ),
                                     Text(
-                                      'Lisboa' + ', ' +'Portugal',///ADD LOCATION DATA
+                                      data['location'],///ADD LOCATION DATA
                                       style: TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.blueGrey,
@@ -113,9 +100,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  //data['biography'],
-                                  'My name is Alice and I am  a freelance mobile app developper.\n'
-                                  'if you need any mobile app for your company then contact me for more informations',
+                                  data['biography'],
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 20.0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meet_and_eat/BookingsScreen.dart';
 import 'package:meet_and_eat/home_page_content.dart';
 import 'package:meet_and_eat/menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -39,9 +40,7 @@ class _HomePage extends State<HomePage> {
           Text(uid)
         ],
       ),
-      Text(
-        'Index 2: Bookings',
-      ),
+      BookingsScreen(),
     ];
     return Scaffold(
       drawer: Menu(title: 'Meet&Eat'),
@@ -390,7 +389,7 @@ class DataSearch extends SearchDelegate<String>{
                               color: Colors.black, fontWeight: FontWeight.bold),
                           children: [
                             TextSpan(
-                                text: meals[index]['seats'],
+                                text: (meals[index]['seats'] - meals[index]['seats_occupied']).toString(),
                                 style: TextStyle(color: Colors.grey)
                             )
                           ]

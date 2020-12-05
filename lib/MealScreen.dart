@@ -503,14 +503,36 @@ class _MealScreen extends State<MealScreen>{
     void RequestSeat(var data){
         var totalSeats = data['seats'];
         var occupied = data['seats_occupied'];
-        if(totalSeats - occupied > 0){
-          occupied += 1;
+        var participants = data['users'];
+        var myId  = context.read<AuthenticationService>().getUserId().toString();
+        bool registered = false;
+        for(int i = 0; i < participants.length; i ++){
+          print(participants[i]);
+          if(participants[i].toString() == myId.toString())
+            registered = true;
         }
+        if(!registered){
+          participants.add(myId);
+          if(totalSeats - occupied > 0){
+            occupied += 1;
+          }
+          users.doc(myId).get().then((value)  {
+              var myMeals = value['meals'];
+              bool haveMeal = false;
+              for(int i = 0; i < myMeals.length; i++){
+                if(myMeals[i].toString() == widget.uid)
+                  haveMeal = true;
+              }
+              if(!haveMeal){
+                myMeals.add(widget.uid);
+                users.doc(myId).update({'meals': myMeals});
+              }
+          });
+          meals.doc(widget.uid).update({'seats_occupied' : occupied, 'users': participants});
+          setState(() {
 
-        meals.doc(widget.uid).update({'seats_occupied' : occupied});
-        setState(() {
-
-        });
+          });
+        }
     }
 
     return FutureBuilder<DocumentSnapshot>(

@@ -173,7 +173,7 @@ class _MealsNearby extends State<MealsNearby> {
                                     ),
                                     TextSpan(
                                       //text: meals[index]['date'],
-                                        text: "2 guests," + meals[index]['seats'].toString() + " seats",
+                                        text: " " + (meals[index]['seats'] - meals[index]['seats_occupied']).toString() + " seats available",
                                         style: TextStyle(fontWeight: FontWeight.normal,
                                             height: 0,
                                             fontSize: 18.0,
