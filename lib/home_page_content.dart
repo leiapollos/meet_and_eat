@@ -123,7 +123,7 @@ class _MealsNearby extends State<MealsNearby> {
                                       CircleAvatar(
                                         radius: 25,
                                         backgroundImage: (data['url'] != null && data['url'].toString().isNotEmpty)
-                                            ? NetworkImage(data['url']) :NetworkImage(
+                                            ? NetworkImage(data['url']) : NetworkImage(
                                           'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
                                         ),
                                         backgroundColor: Colors.blue,

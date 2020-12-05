@@ -170,8 +170,9 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
                 ),*/
                 CircleAvatar(
                   radius: 75,
-                  backgroundImage: (_image != null)
-                      ? Image.file(_image, height: 160, width: 160,) : (data['url'] != null && data['url'].toString().isNotEmpty) ? NetworkImage(data['url']) : AssetImage('assets/images/chimo.png'),
+                  backgroundImage:  (data['url'] != null && data['url'].toString().isNotEmpty) ? NetworkImage(data['url']) : NetworkImage(
+                    'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
+                  ),
                   backgroundColor: Colors.blue,
                 ),
               ),
@@ -199,7 +200,8 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
             child: _image == null
                 ? ClipRRect(
               borderRadius: BorderRadius.circular(200),
-              child: Image.asset('assets/images/chimo.png', height: 160,),
+              child: Image.network(
+                'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png', height: 160, fit: BoxFit.cover,),
             )
                 : ClipRRect(
               borderRadius: BorderRadius.circular(200),
