@@ -169,7 +169,9 @@ class DataSearch extends SearchDelegate<String>{
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(200),
                                       child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
-                                          ? Image.network(profiles[index]['url']) : Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
+                                          ? Image.network(profiles[index]['url']) : NetworkImage(
+                                        'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
+                                      ),
                                     ),
                                   ),
                                 ),

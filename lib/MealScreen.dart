@@ -485,7 +485,9 @@ class _MealScreen extends State<MealScreen>{
                               shape: BoxShape.circle,
                               color: Colors.green,
                               image: DecorationImage(
-                                  image: NetworkImage("https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"),
+                                  image: NetworkImage(
+                                    'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
+                                  ),
                                   fit: BoxFit.cover
                               )
                           ),
