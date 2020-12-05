@@ -509,7 +509,7 @@ class _MealScreen extends State<MealScreen>{
 
         meals.doc(widget.uid).update({'seats_occupied' : occupied});
         setState(() {
-          
+
         });
     }
 

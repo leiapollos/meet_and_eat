@@ -7,7 +7,7 @@ import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
 import 'package:meet_and_eat/GetUsers.dart';
 import 'dart:developer';
-
+import 'package:intl/intl.dart';
 import 'MealScreen.dart';
 
 class HomePageContent extends StatefulWidget {
@@ -75,7 +75,7 @@ class _MealsNearby extends State<MealsNearby> {
             itemCount: meals.length,
             itemBuilder: (context, index) =>
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.55,
+                  width: MediaQuery.of(context).size.width * 0.60,
                   child: FlatButton(
                     onPressed: () => {
                       Navigator.push(
@@ -150,10 +150,10 @@ class _MealsNearby extends State<MealsNearby> {
                                     ),
                                     TextSpan(
                                       //text: meals[index]['date'],
-                                        text: " 20-11-02 16:40",//TODO CHANGE TIME
+                                        text: new DateFormat.yMd().add_jm().format(DateTime.parse(meals[index]['date'])),//TODO CHANGE TIME
                                         style: TextStyle(fontWeight: FontWeight.normal,
                                             height: 1.5,
-                                            fontSize: 18.0,
+                                            fontSize: 15.5,
                                             color: Color(0xff3d405b),
                                             letterSpacing: 0.5)
                                     ),
