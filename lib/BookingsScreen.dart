@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:meet_and_eat/MealScreen.dart';
 
 class BookingsScreen extends StatefulWidget {
   final String uid;
@@ -29,109 +30,92 @@ class _BookingsScreen extends State<BookingsScreen>{
               var meal = snapshotMeal.data.data();
               print(meal['mealName']);
               return Center(
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
-                  color: Colors.white,
-                  elevation: 0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        height: 134.0,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            image: DecorationImage(
-                                image: NetworkImage("https://n9.cl/uc1u"),
-                                fit: BoxFit.cover
-                            )
+                child: FlatButton(
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MealScreen(uid: mealId)),
+                    );
+                  },
+                  height: 100,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(2.0),
+                    ),
+                    color: Colors.white,
+                    elevation: 0,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          height: 100,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(2),
+                              child: Image.network('https://picsum.photos/250?image=9'),
+                          ),
                         ),
-                      ),
-                      Center(
-                        child: Text(meal['mealName'], textAlign: TextAlign.center,
-                            style: TextStyle(color: Color(0xff3d405b), fontSize: 20.0, fontWeight:FontWeight.bold)),
-                      ),
-                      FutureBuilder<DocumentSnapshot>(
-                          future: usersdb.doc(mealId).get(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-                            if (snapshot.hasError) {
-                              return Text("Something went wrong");
-                            }
-                            if (snapshot.connectionState == ConnectionState.done) {
-                              Map<String, dynamic> data = snapshot.data.data();
-                              if(data.isNotEmpty && data != null)
-                                return Row(
+                        Center(
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(meal['mealName'], textAlign: TextAlign.center,
+                                    style: TextStyle(color: Color(0xff3d405b), fontSize: 20.0, fontWeight:FontWeight.bold)),
+                              ),
+                              SizedBox(height: 8,),
+                              Center(
+                                child: Row(
                                   children: [
-                                    SizedBox(width: 20,),
-                                    CircleAvatar(
-                                      radius: 25,
-                                      backgroundImage: (data['url'] != null && data['url'].toString().isNotEmpty)
-                                          ? NetworkImage(data['url']) : AssetImage('assets/images/chimo.png'),
-                                      backgroundColor: Colors.blue,
+                                    SizedBox(width: 10,),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child: Icon(Icons.access_time_rounded, size: 22),
+                                          ),
+                                          TextSpan(
+                                            //text: meals[index]['date'],
+                                              text: new DateFormat.yMd().add_jm().format(DateTime.parse(meal['date'])),//TODO CHANGE TIME
+                                              style: TextStyle(fontWeight: FontWeight.normal,
+                                                  height: 1.5,
+                                                  fontSize: 15.5,
+                                                  color: Color(0xff3d405b),
+                                                  letterSpacing: 0.5)
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Text("   " + data['name'], style: TextStyle(fontWeight: FontWeight.normal,
-                                        height: 1.5,
-                                        fontSize: 18.0,
-                                        color: Color(0xff3d405b),
-                                        letterSpacing: 0.5),),
                                   ],
-                                );
-                              else
-                                return Text("No profile data");
-                            }
-                            return Text("Name");
-                          }),
-                      //Text(meals[index]['date']),
-                      Row(
-                        children: [
-                          SizedBox(width: 10,),
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: Icon(Icons.access_time_rounded, size: 22),
                                 ),
-                                TextSpan(
-                                  //text: meals[index]['date'],
-                                    text: new DateFormat.yMd().add_jm().format(DateTime.parse(meal['date'])),//TODO CHANGE TIME
-                                    style: TextStyle(fontWeight: FontWeight.normal,
-                                        height: 1.5,
-                                        fontSize: 15.5,
-                                        color: Color(0xff3d405b),
-                                        letterSpacing: 0.5)
-                                ),
-                              ],
-                            ),
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 10,),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        WidgetSpan(
+                                          child: Icon(Icons.airline_seat_legroom_normal, size: 22),
+                                        ),
+                                        TextSpan(
+                                          //text: meals[index]['date'],
+                                            text: " " + (meal['seats'] - meal['seats_occupied']).toString() + " seats available",
+                                            style: TextStyle(fontWeight: FontWeight.normal,
+                                                height: 0,
+                                                fontSize: 18.0,
+                                                color: Color(0xff3d405b),
+                                                letterSpacing: 0.5)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(width: 10,),
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: Icon(Icons.airline_seat_legroom_normal, size: 22),
-                                ),
-                                TextSpan(
-                                  //text: meals[index]['date'],
-                                    text: " " + (meal['seats'] - meal['seats_occupied']).toString() + " seats available",
-                                    style: TextStyle(fontWeight: FontWeight.normal,
-                                        height: 0,
-                                        fontSize: 18.0,
-                                        color: Color(0xff3d405b),
-                                        letterSpacing: 0.5)
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
