@@ -27,7 +27,9 @@ class _BookingsScreen extends State<BookingsScreen>{
       return FutureBuilder(
           future: mealsdb.doc(mealId).get(),
           builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshotMeal) {
-              var meal = snapshotMeal.data.data();
+              var meal = snapshotMeal.data?.data();
+              if(meal == null)
+                return Center();
               print(meal['mealName']);
               return Center(
                 child: FlatButton(
@@ -128,8 +130,9 @@ class _BookingsScreen extends State<BookingsScreen>{
         future: usersdb.doc(uid).get(),
         builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshotUser) {
 
-          var me = snapshotUser.data.data();
-          print(me['name']);
+          var me = snapshotUser.data?.data();
+          if(me == null)
+            return Center();
           List<Widget> mealList = new List<Widget>();
           for(int i = 0; i < me['meals'].length; i++){
             var m = me['meals'][i].toString();
