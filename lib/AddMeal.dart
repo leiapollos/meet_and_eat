@@ -67,10 +67,11 @@ class _AddMeal extends State<AddMeal> {
         'cook': uid,
         'mealName' : mealName,
         'date': date,
-        'seats': seats,
+        'seats': int.parse(seats),
         'address': address,
         'note': note,
         'menu': menu,
+        'seats_occupied' : 0,
       })
           .then((value) => {
         print("Meal Added"),
