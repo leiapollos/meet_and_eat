@@ -72,7 +72,8 @@ class _AddMeal extends State<AddMeal> {
         'note': note,
         'menu': menu,
         'seats_occupied' : 0,
-        'url': ''
+        'url': '',
+        'users': ['']
       })
           .then((value) => {
         print("Meal Added"),
