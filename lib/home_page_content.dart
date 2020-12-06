@@ -98,7 +98,7 @@ class _MealsNearby extends State<MealsNearby> {
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 image: DecorationImage(
-                                    image: NetworkImage(meals[index]['url'] == "" ? "https://n9.cl/uc1u" : meals[index]['url']),
+                                    image: NetworkImage(meals[index]['url'] == "" ? "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D" : meals[index]['url']),
                                     fit: BoxFit.cover
                                 )
                             ),

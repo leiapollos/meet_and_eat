@@ -47,7 +47,7 @@ class _MealScreen extends State<MealScreen>{
                               decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
                                   image: DecorationImage(
-                                      image: NetworkImage(data['url'] == "" ? "https://n9.cl/uc1u" : data['url']),
+                                      image: NetworkImage(data['url'] == "" ? "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D" : data['url']),
                                       fit: BoxFit.cover
                                   )
                               ),
@@ -279,7 +279,7 @@ class _MealScreen extends State<MealScreen>{
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 image: DecorationImage(
-                                    image: NetworkImage("https://n9.cl/uc1u"),
+                                    image: NetworkImage("https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"),
                                     fit: BoxFit.cover
                                 )
                             ),
@@ -502,6 +502,7 @@ class _MealScreen extends State<MealScreen>{
       );
     }
 
+
     void RequestSeat(var data){
         var totalSeats = data['seats'];
         var occupied = data['seats_occupied'];
@@ -541,6 +542,66 @@ class _MealScreen extends State<MealScreen>{
       future: meals.doc(widget.uid).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+          _showMaterialDialog(var data) {
+            showDialog(
+              context: context,
+              builder: (_) => new AlertDialog(
+                backgroundColor: const Color(0xff81b29a),
+                title: Center(
+                  child: new Text(
+                    'COVID-19 ALERT', style: TextStyle(color: Colors.white),
+                    ),
+                ),
+                content: Container(
+                    child: Center(
+                        child: Text(
+                          "Have you been in contact with anyone who has tested positive in the last 14 days?",
+                          style: TextStyle(color: Colors.white,),
+                          textAlign: TextAlign.justify,
+                        )
+                    ),
+                  height: 56,
+
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('NO', style: TextStyle(color: Colors.white),),
+                    onPressed: () {
+                      RequestSeat(data);
+                      Navigator.of(context).pop();
+
+                      showDialog(
+                        context: context,
+                        builder: (_) => new AlertDialog(
+                          backgroundColor: const Color(0xff81b29a),
+                          title: Text("Congratulations in registering!", style: TextStyle(color: Colors.white),),
+                          actions: [
+                            FlatButton(
+                              child: Text('Close me!', style: TextStyle(color: Colors.white),),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    width: 150,
+                  ),
+                  FlatButton(
+                    child: Text('YES', style: TextStyle(color: Colors.white),),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            );
+          }
+
         if (snapshot.hasError) {
           return Text("Something went wrong");
         }
@@ -567,7 +628,7 @@ class _MealScreen extends State<MealScreen>{
 
                 onPressed: () {
                   // Respond to button press
-                  RequestSeat(data);
+                  _showMaterialDialog(data);
                 },
                 icon: Icon(Icons.add_to_home_screen_rounded),
                 label: Text("Request a Seat",

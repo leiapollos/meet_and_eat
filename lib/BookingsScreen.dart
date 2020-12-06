@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:meet_and_eat/RateScreen.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -22,8 +23,14 @@ class _BookingsScreen extends State<BookingsScreen>{
     CollectionReference mealsdb = FirebaseFirestore.instance.collection('meals');
     CollectionReference usersdb = FirebaseFirestore.instance.collection('profiles');
     final uid = context.watch<AuthenticationService>().getUserId();
+    Widget passed;
+    Widget result;
+    List<Widget> mealList = new List<Widget>();
+    List<Widget> passedMealList = new List<Widget>();
 
-    Widget Meal(var mealId){
+
+
+    Widget Meal(var mealId, bool passed){
       return FutureBuilder(
           future: mealsdb.doc(mealId).get(),
           builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshotMeal) {
@@ -31,12 +38,15 @@ class _BookingsScreen extends State<BookingsScreen>{
               if(meal == null)
                 return Center();
               print(meal['mealName']);
+              if((!passed && DateTime.parse(meal['date']).isBefore(DateTime.now())) || (passed && DateTime.parse(meal['date']).isAfter(DateTime.now()))){
+                return Center();
+              }
               return Center(
                 child: FlatButton(
                   onPressed: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MealScreen(uid: mealId)),
+                      MaterialPageRoute(builder: (context) => passed ? RatingScreen() : MealScreen(uid: mealId)),
                     );
                   },
                   height: 100,
@@ -54,7 +64,7 @@ class _BookingsScreen extends State<BookingsScreen>{
                           height: 100,
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(2),
-                              child: Image.network(meal['url'] == "" ? "https://n9.cl/uc1u" : meal['url']),
+                              child: Image.network(meal['url'] == "" ? "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D" : meal['url']),
                           ),
                         ),
                         Center(
@@ -125,11 +135,12 @@ class _BookingsScreen extends State<BookingsScreen>{
           );
     }
 
-    Widget getMyMeals() {
+    Widget getMyMeals(bool passed) {
       return FutureBuilder(
         future: usersdb.doc(uid).get(),
         builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshotUser) {
-
+          mealList.clear();
+          passedMealList.clear();
           var me = snapshotUser.data?.data();
           if(me == null)
             return Center();
@@ -141,34 +152,89 @@ class _BookingsScreen extends State<BookingsScreen>{
                 return Text("No booked meals!");
               }
           }
-          List<Widget> mealList = new List<Widget>();
           for(int i = 0; i < me['meals'].length; i++){
             var m = me['meals'][i].toString();
             if(m != ""){
-              mealList.add(Meal(m));
+              mealList.add(Meal(m, false));
+              passedMealList.add(Meal(m, true));
             }
             print(i);
           }
-          if(mealList.length > 0)
-            return Container(
-              child: ListView(
-                children: <Widget>[
-                      ...mealList,
-                ],
-              ),
-            );
-          else
-            return null;
+          if(!passed){
+            if(mealList.length > 0)
+              return Container(
+                child: ListView(
+                  children: <Widget>[
+                    ...mealList,
+                  ],
+                ),
+              );
+            else
+              return Center(
+                child: Text("No meals!"),
+              );
+          }else{
+            if(passedMealList.length > 0)
+              return Container(
+                child: ListView(
+                  children: <Widget>[
+                    ...passedMealList,
+                  ],
+                ),
+              );
+            else
+              return Center(
+                child: Text("No passed meals!"),
+              );
+          }
+
         },
       );
     }
 
-    Widget result = getMyMeals();
-    if(result == null){
-      result = Text("No meals!");
-    }
-    return Center(
-      child: result,
+    result = getMyMeals(false);
+    passed = getMyMeals(true);
+
+    return DefaultTabController(
+      length: 2,
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: TabBar(
+            unselectedLabelColor: Color(0xffc1c1c1),
+              labelColor: Color(0xff4a4d66),
+              indicatorColor: Color(0xffc1c1c1),
+              onTap: (index) {
+                // Tab index when user select it, it start from zero
+              },
+              tabs: [
+                Container(
+                  child: Center(
+                      child: Text(
+                          "Accepted",
+                          style: TextStyle(fontSize: 19),
+                      )
+                  ),
+                  height: 40,
+                ),
+                Container(
+                  child: Center(
+                      child: Text(
+                          "Passed",
+                          style: TextStyle(fontSize: 19),
+                      )
+                  ),
+                  height: 40,
+                ),
+              ],
+            ),
+          body: TabBarView(
+            children: [
+             result,
+             passed,
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
