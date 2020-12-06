@@ -31,29 +31,6 @@ class Profile extends StatelessWidget {
 
         CollectionReference users = FirebaseFirestore.instance.collection('profiles');
         final uid = context.watch<AuthenticationService>().getUserId();
-        Future<void> addUser(String name, String lastName, int age) {
-          // Call the user's CollectionReference to add a new user
-          return users
-             .doc(uid)
-             .set({
-              'name': name,
-              'lastName': lastName,
-              'age': age,
-              'location': "",
-              'biography': "",
-              'url': "",
-              'meals': ['']
-              })
-              .then((value) => {
-                print("User Added"),
-            //Reload Profile
-                Navigator.pop(context),
-                Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Profile(uid)),)
-              })
-              .catchError((error) => print("Failed to add user: $error"));
-        }
         _showMaterialDialog(String text) {
           showDialog(
               context: context,
@@ -70,6 +47,38 @@ class Profile extends StatelessWidget {
                 ],
               ));
         }
+        Future<void> addUser() {
+          // Call the user's CollectionReference to add a new user
+          String name = nameController.text.trim();
+          String lastName = lastNameController.text.trim();
+          String age = ageController.text.trim();
+          String location = locationController.text.trim();
+          String biography = biographyController.text.trim();
+          if(name == "" || lastName == "" || age == "" || location == "" || biography == ""){
+            _showMaterialDialog("Please fill in all the fields.");
+          }
+          return users
+             .doc(uid)
+             .set({
+              'name': name,
+              'lastName': lastName,
+              'age': int.parse(age),
+              'location': location,
+              'biography': biography,
+              'url': "",
+              'meals': ['']
+              })
+              .then((value) => {
+                print("User Added"),
+            //Reload Profile
+                Navigator.pop(context),
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Profile(uid)),)
+              })
+              .catchError((error) => print("Failed to add user: $error"));
+        }
+
         if (snapshot.hasError) {
           return Text("Something went wrong");
         }
@@ -125,12 +134,11 @@ class Profile extends StatelessWidget {
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: ListView(
-                    //mainAxisAlignment: MainAxisAlignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ImagePickerWidget(uid: uid),
                       SizedBox(
-                        height: 8.0,
+                        height: 48.0,
                       ),
                       TextField(
                         controller: nameController,
@@ -167,7 +175,7 @@ class Profile extends StatelessWidget {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: Color(0xff3d405b), width: 1.0),
+                            BorderSide(color:Color(0xff3d405b), width: 1.0),
                             borderRadius: BorderRadius.all(Radius.circular(32.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -258,24 +266,33 @@ class Profile extends StatelessWidget {
                       SizedBox(
                         height: 24.0,
                       ),
-                      /* Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Material(
-                  color: Color(0xff3d405b),
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                  elevation: 5.0,
-                  child: MaterialButton(
-                    onPressed: () {
-                        addUser();
-                    },
-                    minWidth: 200.0,
-                    height: 42.0,
-                    child: Text(
-                      'Edit Info',
-                    ),
-                  ),
-                ),
-              ),*/
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16.0),
+                        child: Material(
+                          color: Color(0xff81b29a),
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          elevation: 5.0,
+                          child: MaterialButton(
+                            onPressed: () {
+                              String name = nameController.text.trim();
+                              String lastName = lastNameController.text.trim();
+                              String age = ageController.text.trim();
+                              if(name == "" || lastName == "" || age == ""){
+                                _showMaterialDialog("Please fill in all the fields.");
+                              }
+                              else {
+                                addUser();
+                              }
+                            },
+                            minWidth: 200.0,
+                            height: 42.0,
+                            child: Text(
+                              'Add Info',
+                              style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -247,7 +247,7 @@ class _MealScreen extends State<MealScreen>{
                         ),
                         Positioned(
                           top: 140.0, // (background container size) - (circle height / 2)
-                          left: MediaQuery.of(context).size.width/2 - 60,
+                          left: MediaQuery.of(context).size.width/2 - 80,
                           child: FlatButton(
                             onPressed: (){
                               Navigator.push(
