@@ -10,23 +10,19 @@ import 'package:dash_chat/dash_chat.dart';
 
 
 class ChatSystem extends StatefulWidget {
+  final String otheruid;
+  final String otherName;
+  final String myuid;
+  final String myName;
+
+  const ChatSystem ({ Key key, this.otheruid, this.otherName, this.myuid, this.myName }): super(key: key);
+
   @override
   _ChatSystemState createState() => _ChatSystemState();
 }
 
 class _ChatSystemState extends State<ChatSystem> {
   final GlobalKey<DashChatState> _chatViewKey = GlobalKey<DashChatState>();
-
-  final ChatUser user = ChatUser(
-    name: "Fayeed",
-    uid: "123456789",
-    avatar: "https://www.wrappixel.com/ampleadmin/assets/images/users/4.jpg",
-  );
-
-  final ChatUser otherUser = ChatUser(
-    name: "Mrfatty",
-    uid: "25649654",
-  );
 
   List<ChatMessage> messages = List<ChatMessage>();
   var m = List<ChatMessage>();
@@ -85,6 +81,16 @@ class _ChatSystemState extends State<ChatSystem> {
 
   @override
   Widget build(BuildContext context) {
+    final ChatUser user = ChatUser(
+      name: widget.myName,
+      uid: widget.myuid,
+      avatar: "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png",
+    );
+
+    final ChatUser otherUser = ChatUser(
+      name: widget.otherName,
+      uid: widget.otheruid,
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text("Chat App"),

@@ -35,14 +35,13 @@ class _HomePage extends State<HomePage> {
     final uid = context.watch<AuthenticationService>().getUserId();
     List<Widget> _widgetOptions = <Widget>[
       HomePageContent(),
-      /*Column(
+      Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GetUsers(),
-          Text(uid)
         ],
-      ),*/
-      ChatSystem(),
+      ),
+      //ChatSystem(),
       //RatingScreen(uid: uid),
       BookingsScreen(),
     ];

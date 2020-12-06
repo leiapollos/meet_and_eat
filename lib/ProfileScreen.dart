@@ -63,7 +63,7 @@ class _ProfileScreen extends State<ProfileScreen>{
                                   children: <Widget>[
                                     CircleAvatar(
                                       backgroundImage: NetworkImage(
-                                        data['url'] == "" ? "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg" : data['url'],
+                                        data['url'] == "" ? "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png" : data['url'],
                                       ),
                                       radius: 70.0,
                                     ),
@@ -423,7 +423,7 @@ class CategoriesScroller extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     image: DecorationImage(
                         image: NetworkImage(
-                            "https://n9.cl/uc1u"
+                            "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
                         ),
                         fit: BoxFit.cover
                     )),
@@ -450,7 +450,7 @@ class CategoriesScroller extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     image: DecorationImage(
                         image: NetworkImage(
-                            "https://n9.cl/uc1u"
+                            "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
                         ),
                         fit: BoxFit.cover
                     )),
@@ -477,7 +477,7 @@ class CategoriesScroller extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     image: DecorationImage(
                         image: NetworkImage(
-                            "https://n9.cl/uc1u"
+                            "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
                         ),
                         fit: BoxFit.cover
                     )),
