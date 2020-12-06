@@ -72,6 +72,7 @@ class _AddMeal extends State<AddMeal> {
         'note': note,
         'menu': menu,
         'seats_occupied' : 0,
+        'url': ''
       })
           .then((value) => {
         print("Meal Added"),
@@ -124,7 +125,7 @@ class _AddMeal extends State<AddMeal> {
           child: ListView(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ImagePickerWidget(uid: uid, showUploadButton: false,),
+              ImagePickerWidget(uid: uid, showUploadButton: true, isMeal: true,),
               SizedBox(
                 height: 8.0,
               ),

@@ -17,7 +17,7 @@ class ImagePickerWidget extends StatefulWidget {
   final bool isMeal;
   final bool showUploadButton;
 
-  const ImagePickerWidget ({ Key key, this.uid , this.isMeal, this.showUploadButton = true}): super(key: key);
+  const ImagePickerWidget ({ Key key, this.uid , this.isMeal = false, this.showUploadButton = true}): super(key: key);
   @override
   _ImagePickerWidget createState() => _ImagePickerWidget();
 }
@@ -40,7 +40,7 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
   Future uploadFile() async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
-        .child('profile_pictures/${widget.uid}');
+        .child(widget.isMeal ? 'meals_pictures/${widget.uid}' : 'profile_pictures/${widget.uid}');
     StorageUploadTask uploadTask = storageReference.putFile(_image);
     //uploadTask.
     _showMaterialDialog(uploadTask);
@@ -49,14 +49,26 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
     storageReference.getDownloadURL().then((fileURL) {
       setState(() {
         _uploadedFileURL = fileURL;
-        users
-            .doc(widget.uid)
-            .update({
-          'url': _uploadedFileURL
-        })
-            .then((value) => {
-          print("Image Reference added" + _uploadedFileURL),})
-            .catchError((error) => print("Failed to add image reference: $error"));
+        if(widget.isMeal){
+          meals
+              .doc(widget.uid)
+              .update({
+            'url': _uploadedFileURL
+          })
+              .then((value) => {
+            print("Image Reference added" + _uploadedFileURL),})
+              .catchError((error) => print("Failed to add image reference: $error"));
+        }
+        else{
+          users
+              .doc(widget.uid)
+              .update({
+            'url': _uploadedFileURL
+          })
+              .then((value) => {
+            print("Image Reference added" + _uploadedFileURL),})
+              .catchError((error) => print("Failed to add image reference: $error"));
+        }
       });
     });
   }
@@ -101,33 +113,6 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
     )
     );
   }
- /* Widget _uploadStatus(StorageUploadTask task) {
-    return StreamBuilder(
-      stream: task.events,
-      builder: (BuildContext context, snapshot) {
-        Widget subtitle;
-        if (snapshot.hasData) {
-          final StorageTaskEvent event = snapshot.data;
-          final StorageTaskSnapshot snap = event.snapshot;
-          subtitle = Text('${_bytesTransferred(snap)} KB sent');
-        } else {
-          subtitle = const Text('Starting...');
-        }
-        return ListTile(
-          title: s.isComplete && s.isSuccessful
-              ? Text(
-            'Done',
-            style: detailStyle,
-          )
-              : Text(
-            'Uploading',
-            style: detailStyle,
-          ),
-          subtitle: subtitle,
-        );
-      },
-    );
-  }*/
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -149,13 +134,15 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<DocumentSnapshot>(
-        future: users.doc(widget.uid).get(),
+        future: widget.isMeal ? meals.doc(widget.uid).get() : users.doc(widget.uid).get(),
     builder:
     (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
 
       if (snapshot.connectionState == ConnectionState.done){
           Map<String, dynamic> data = snapshot.data.data();
           if(snapshot.data.exists && data['url'] != null && data['url'].toString().isNotEmpty){
+
+            print("f");
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [ Center(
@@ -193,7 +180,7 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
         }
       }
 
-
+      print("h");
       return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [ Center(
@@ -208,6 +195,7 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
               child: Image.file(_image, height: 160,),
             ),
           ),
+            (widget.showUploadButton) ?
             Padding(
               padding: const EdgeInsets.only(
                   left: 0, top: 100, right: 00, bottom: 0),
@@ -217,33 +205,10 @@ class _ImagePickerWidget extends State<ImagePickerWidget> {
                 tooltip: 'Pick Image',
                 child: Icon(Icons.add_a_photo),
               ),
-            ),
+            ) : Container()
           ]
       );
     }
     );
     }
 }
-
-/*
-*   Future<void> saveImages(List<File> _images, DocumentReference ref) async {
-    _images.forEach((image) async {
-      String imageURL = await uploadFile(image);
-      ref.update({"images": FieldValue.arrayUnion([imageURL])});
-    });
-  }
-
-  Future<String> uploadFile(File _image) async {
-    Reference storageReference = FirebaseStorage.instance
-        .ref()
-        .child('profile_pictures/${Path.basename(_image.path)}');
-    UploadTask uploadTask = storageReference.putFile(_image);
-    await uploadTask.onComplete;
-    print('File Uploaded');
-    String returnURL;
-    await storageReference.getDownloadURL().then((fileURL) {
-      returnURL =  fileURL;
-    });
-    return returnURL;
-  }
-* */

@@ -54,7 +54,7 @@ class _BookingsScreen extends State<BookingsScreen>{
                           height: 100,
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(2),
-                              child: Image.network('https://picsum.photos/250?image=9'),
+                              child: Image.network(meal['url'] == "" ? "https://n9.cl/uc1u" : meal['url']),
                           ),
                         ),
                         Center(
@@ -170,37 +170,5 @@ class _BookingsScreen extends State<BookingsScreen>{
     return Center(
       child: result,
     );
-    /*return StreamBuilder(
-        stream: mealsdb.snapshots(),
-        builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Something went wrong');
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
-        }
-        final meals = snapshot.data.docs;
-        print(meals.length);
-
-        return StreamBuilder(
-            stream: usersdb.snapshots(),
-            builder: (context, snapshot2) {
-              if (snapshot2.hasError) {
-                return Text('Something went wrong');
-              }
-              if (snapshot2.connectionState == ConnectionState.waiting) {
-                return Text("Loading");
-              }
-              final users = snapshot2.data.docs;
-              print(users.length);
-              return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  padding: EdgeInsets.all(0.0),
-                  shrinkWrap: true,
-                  itemCount: meals.length,
-                  itemBuilder: (context, index) => getMyMeals(meals, users, index),
-              );
-            });
-    });*/
   }
 }

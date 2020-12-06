@@ -47,7 +47,7 @@ class _MealScreen extends State<MealScreen>{
                               decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
                                   image: DecorationImage(
-                                      image: NetworkImage("https://n9.cl/uc1u"),
+                                      image: NetworkImage(data['url'] == "" ? "https://n9.cl/uc1u" : data['url']),
                                       fit: BoxFit.cover
                                   )
                               ),
