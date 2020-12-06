@@ -18,6 +18,44 @@ class HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContent extends State<HomePageContent> {
+  Widget getCuisine(var name, var imageUrl){
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.60,
+      child: FlatButton(
+        onPressed: () => {
+
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2.0),
+          ),
+          color: Color(0xfffafafa),
+          elevation: 0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 134.0,
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    image: DecorationImage(
+                        image: NetworkImage(imageUrl),
+                        fit: BoxFit.cover
+                    )
+                ),
+              ),
+              Center(
+                child: Text(name, textAlign: TextAlign.center,
+                    style: TextStyle(color: Color(0xff3d405b), fontSize: 20.0, fontWeight:FontWeight.bold)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +73,16 @@ class _HomePageContent extends State<HomePageContent> {
             "Cuisines",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
           ),
-          MealsNearby(),
+          Expanded(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.all(0.0),
+              shrinkWrap: true,
+              children: [
+              getCuisine("Mexian", "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D")
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -193,103 +240,6 @@ class _MealsNearby extends State<MealsNearby> {
                   ),
                 ),
           );
-          /*return SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: FittedBox(
-                fit: BoxFit.fill,
-                alignment: Alignment.topCenter,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      width: 150,
-                      margin: EdgeInsets.only(right: 10),
-                      height: categoryHeight,
-                      decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://n9.cl/uc1u"
-                              ),
-                              fit: BoxFit.cover
-                          )),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 100.0),
-                        child: Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                          child: Center(
-                            child: Text("CHIMO",
-                                style: TextStyle(fontSize: 15, color: Colors.white),
-                                textAlign: TextAlign.center),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 150,
-                      margin: EdgeInsets.only(right: 10),
-                      height: categoryHeight,
-                      decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://n9.cl/uc1u"
-                              ),
-                              fit: BoxFit.cover
-                          )),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 100.0),
-                        child: Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                          child: Center(
-                            child: Text("CHIMO",
-                                style: TextStyle(fontSize: 15, color: Colors.white),
-                                textAlign: TextAlign.center),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 150,
-                      margin: EdgeInsets.only(right: 10),
-                      height: categoryHeight,
-                      decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://n9.cl/uc1u"
-                              ),
-                              fit: BoxFit.cover
-                          )),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 100.0),
-                        child: Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                          child: Center(
-                            child: Text("CHIMO",
-                                style: TextStyle(fontSize: 15, color: Colors.white),
-                                textAlign: TextAlign.center),
-                          ),
-                        ),
-                      ),
-
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );*/
         }
       ),
     );

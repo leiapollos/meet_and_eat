@@ -144,9 +144,10 @@ class _BookingsScreen extends State<BookingsScreen>{
           var me = snapshotUser.data?.data();
           if(me == null)
             return Center();
+          var missing = passed ? "No passed meals" : "No booked meals";
           if(me['meals'].length == 0){
             return Text(
-              "No passed meals!",
+              missing,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -160,7 +161,7 @@ class _BookingsScreen extends State<BookingsScreen>{
           if(me['meals'].length == 1){
               if(me['meals'][0] == ""){
                 return Text(
-                  "No booked meals!",
+                  missing,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -191,7 +192,7 @@ class _BookingsScreen extends State<BookingsScreen>{
               );
             else
               return Center(
-                child: Text("No meals!"),
+                child: Text(missing),
               );
           }else{
             if(passedMealList.length > 0)
@@ -205,7 +206,7 @@ class _BookingsScreen extends State<BookingsScreen>{
             else
               return Center(
                 child: Text(
-                    "No passed meals!",
+                    missing,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -239,7 +240,7 @@ class _BookingsScreen extends State<BookingsScreen>{
                 Container(
                   child: Center(
                       child: Text(
-                          "Accepted",
+                          "Upcoming",
                           style: TextStyle(fontSize: 19),
                       )
                   ),
