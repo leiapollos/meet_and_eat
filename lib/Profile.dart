@@ -14,6 +14,8 @@ class Profile extends StatelessWidget {
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController biographyController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   Profile(this.documentId);
   bool edit = false;
@@ -123,11 +125,12 @@ class Profile extends StatelessWidget {
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: ListView(
+                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      ImagePickerWidget(uid: uid),
                       SizedBox(
-                        height: 48.0,
+                        height: 8.0,
                       ),
                       TextField(
                         controller: nameController,
@@ -164,7 +167,7 @@ class Profile extends StatelessWidget {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide:
-                            BorderSide(color:Color(0xff3d405b), width: 1.0),
+                            BorderSide(color: Color(0xff3d405b), width: 1.0),
                             borderRadius: BorderRadius.all(Radius.circular(32.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -201,39 +204,78 @@ class Profile extends StatelessWidget {
 
                       ),
                       SizedBox(
-                        height: 24.0,
+                        height: 8.0,
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        child: Material(
-                          color: Color(0xff81b29a),
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          elevation: 5.0,
-                          child: MaterialButton(
-                            onPressed: () {
-                              String name = nameController.text.trim();
-                              String lastName = lastNameController.text.trim();
-                              String age = ageController.text.trim();
-                              if(name == "" || lastName == "" || age == ""){
-                                _showMaterialDialog("Please fill in all the fields.");
-                              }
-                              else {
-                                addUser(
-                                    name,
-                                    lastName,
-                                    int.parse(age)
-                                );
-                              }
-                            },
-                            minWidth: 200.0,
-                            height: 42.0,
-                            child: Text(
-                              'Add Info',
-                              style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight:FontWeight.w300),
-                            ),
+                      TextField(
+                        controller: locationController,
+                        decoration: InputDecoration(
+                          hintText: 'Your Location',
+                          contentPadding:
+                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Color(0xff3d405b), width: 1.0),
+                            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Color(0xff3d405b), width: 2.0),
+                            borderRadius: BorderRadius.all(Radius.circular(32.0)),
                           ),
                         ),
+
                       ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      TextField(
+                        controller: biographyController,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 4,
+                        decoration: InputDecoration(
+                          hintText: 'A Desciption of Yourself',
+                          contentPadding:
+                          EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Color(0xff3d405b), width: 1.0),
+                            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Color(0xff3d405b), width: 2.0),
+                            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          ),
+                        ),
+
+                      ),
+                      SizedBox(
+                        height: 24.0,
+                      ),
+                      /* Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.0),
+                child: Material(
+                  color: Color(0xff3d405b),
+                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                  elevation: 5.0,
+                  child: MaterialButton(
+                    onPressed: () {
+                        addUser();
+                    },
+                    minWidth: 200.0,
+                    height: 42.0,
+                    child: Text(
+                      'Edit Info',
+                    ),
+                  ),
+                ),
+              ),*/
                     ],
                   ),
                 ),

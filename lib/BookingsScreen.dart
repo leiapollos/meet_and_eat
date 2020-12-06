@@ -54,7 +54,7 @@ class _BookingsScreen extends State<BookingsScreen>{
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2.0),
                     ),
-                    color: Colors.white,
+                    color: Color(0xfffafafa),
                     elevation: 0,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,8 +197,7 @@ class _BookingsScreen extends State<BookingsScreen>{
 
     return DefaultTabController(
       length: 2,
-      child: MaterialApp(
-        home: Scaffold(
+      child: Scaffold(
           appBar: TabBar(
             unselectedLabelColor: Color(0xffc1c1c1),
               labelColor: Color(0xff4a4d66),
@@ -234,7 +233,6 @@ class _BookingsScreen extends State<BookingsScreen>{
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

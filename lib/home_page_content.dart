@@ -87,7 +87,7 @@ class _MealsNearby extends State<MealsNearby> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(2.0),
                       ),
-                      color: Colors.white,
+                      color: Color(0xfffafafa),
                       elevation: 0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
