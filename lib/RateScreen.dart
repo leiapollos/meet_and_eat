@@ -122,7 +122,7 @@ class _RatingScreen extends State<RatingScreen>{
                                      style: TextStyle(
                                        fontWeight: FontWeight.normal,
                                        height: 1.5,
-                                       fontSize: 20.0,
+                                       fontSize: 25.0,
                                        color: Colors.blueGrey,
                                        letterSpacing: 0.5,
                                      ),
@@ -200,7 +200,7 @@ class _RatingScreen extends State<RatingScreen>{
                              height: 0,
                              color: Colors.grey,
                            ),
-                           Text('Rate ${userData['name']} as a Cook',
+                           Text('What was your overall experience?',
                              textAlign: TextAlign.center,
                              style: TextStyle(
                                fontWeight: FontWeight.bold,
@@ -210,112 +210,29 @@ class _RatingScreen extends State<RatingScreen>{
                                letterSpacing: 0.5,
                              ),
                            ),
-                           Row(
+                           Column(
                              mainAxisAlignment: MainAxisAlignment.center,
                              children: [
-                               Column(
-                                 mainAxisAlignment: MainAxisAlignment.center,
-                                 children: [
-                                   Text("Food quality",
-                                     textAlign: TextAlign.center,
-                                     style: TextStyle(
-                                       fontWeight: FontWeight.normal,
-                                       height: 1.5,
-                                       fontSize: 18.0,
-                                       color: Colors.blueGrey,
-                                       letterSpacing: 0.5,
-                                     ),
-                                   ),
-                                   SizedBox(
-                                     height: 5,
-                                   ),
-                                   Text("Ambience",
-                                     textAlign: TextAlign.center,
-                                     style: TextStyle(
-                                       fontWeight: FontWeight.normal,
-                                       height: 1.5,
-                                       fontSize: 18.0,
-                                       color: Colors.blueGrey,
-                                       letterSpacing: 0.5,
-                                     ),
-                                   ),
-                                   SizedBox(
-                                     height: 5,
-                                   ),
-                                   Text("Cleanliness",
-                                     textAlign: TextAlign.center,
-                                     style: TextStyle(
-                                       fontWeight: FontWeight.normal,
-                                       height: 1.5,
-                                       fontSize: 18.0,
-                                       color: Colors.blueGrey,
-                                       letterSpacing: 0.5,
-                                     ),
-                                   ),
-                                 ],
+                               RatingBar.builder(
+                                 itemSize: 30,
+                                 initialRating: 3,
+                                 minRating: 1,
+                                 direction: Axis.horizontal,
+                                 allowHalfRating: true,
+                                 itemCount: 5,
+                                 itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
+                                 itemBuilder: (context, _) => Icon(
+                                   Icons.star,
+                                   color: Color(0xff3d405b),
+                                 ),
+                                 onRatingUpdate: (rating) {
+                                   print(rating);
+                                 },
                                ),
                                SizedBox(
-                                 width: 20,
+                                 height: 5,
                                ),
-                               Column(
-                                 mainAxisAlignment: MainAxisAlignment.center,
-                                 children: [
-                                   RatingBar.builder(
-                                     itemSize: 30,
-                                     initialRating: 3,
-                                     minRating: 1,
-                                     direction: Axis.horizontal,
-                                     allowHalfRating: true,
-                                     itemCount: 5,
-                                     itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
-                                     itemBuilder: (context, _) => Icon(
-                                       Icons.star,
-                                       color: Color(0xff3d405b),
-                                     ),
-                                     onRatingUpdate: (rating) {
-                                       print(rating);
-                                     },
-                                   ),
-                                   SizedBox(
-                                     height: 5,
-                                   ),
-                                   RatingBar.builder(
-                                     itemSize: 30,
-                                     initialRating: 3,
-                                     minRating: 1,
-                                     direction: Axis.horizontal,
-                                     allowHalfRating: true,
-                                     itemCount: 5,
-                                     itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
-                                     itemBuilder: (context, _) => Icon(
-                                       Icons.star,
-                                       color: Color(0xff3d405b),
-                                     ),
-                                     onRatingUpdate: (rating) {
-                                       print(rating);
-                                     },
-                                   ),
-                                   SizedBox(
-                                     height: 5,
-                                   ),
-                                   RatingBar.builder(
-                                     itemSize: 30,
-                                     initialRating: 3,
-                                     minRating: 1,
-                                     direction: Axis.horizontal,
-                                     allowHalfRating: true,
-                                     itemCount: 5,
-                                     itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
-                                     itemBuilder: (context, _) => Icon(
-                                       Icons.star,
-                                       color: Color(0xff3d405b),
-                                     ),
-                                     onRatingUpdate: (rating) {
-                                       print(rating);
-                                     },
-                                   ),
-                                 ],
-                               )
+
                              ],
                            ),
                            SizedBox(
@@ -363,7 +280,7 @@ class _RatingScreen extends State<RatingScreen>{
                              ),
                            ),
                            SizedBox(
-                             height: 140,
+                             height: 260,
                            ),
 
 
