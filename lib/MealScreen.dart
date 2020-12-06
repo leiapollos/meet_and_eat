@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:meet_and_eat/ChatSystem.dart';
 import 'package:meet_and_eat/ProfileScreen.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
@@ -246,7 +247,7 @@ class _MealScreen extends State<MealScreen>{
                         ),
                         Positioned(
                           top: 140.0, // (background container size) - (circle height / 2)
-                          left: 140,
+                          left: MediaQuery.of(context).size.width/2 - 70,
                           child: FlatButton(
                             onPressed: (){
                               Navigator.push(
@@ -579,7 +580,6 @@ class _MealScreen extends State<MealScreen>{
                     onPressed: () {
                       RequestSeat(data);
                       Navigator.of(context).pop();
-
                       showDialog(
                         context: context,
                         builder: (_) => new AlertDialog(
@@ -587,9 +587,12 @@ class _MealScreen extends State<MealScreen>{
                           title: Text("Congratulations in registering!", style: TextStyle(color: Colors.white),),
                           actions: [
                             FlatButton(
-                              child: Text('Close me!', style: TextStyle(color: Colors.white),),
+                              child: Text('Send Message!', style: TextStyle(color: Colors.white),),
                               onPressed: () {
                                 Navigator.of(context).pop();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ChatSystem(otheruid: widget.uid,)),);
                               },
                             ),
                           ],
