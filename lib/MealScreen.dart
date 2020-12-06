@@ -561,7 +561,7 @@ class _MealScreen extends State<MealScreen>{
                           textAlign: TextAlign.justify,
                         )
                     ),
-                  height: 56,
+                  height: 60,
 
                 ),
                 actions: <Widget>[
