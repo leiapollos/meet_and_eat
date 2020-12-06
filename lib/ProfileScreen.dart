@@ -434,7 +434,7 @@ class CategoriesScroller extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                     ),
                     child: Center(
-                      child: Text("CHIMO",
+                      child: Text("American Style Meatballs",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                           textAlign: TextAlign.center),
                     ),
@@ -460,7 +460,7 @@ class CategoriesScroller extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                     ),
                     child: Center(
-                      child: Text("CHIMO",
+                      child: Text("Chicken Salad",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                           textAlign: TextAlign.center),
                     ),
@@ -485,7 +485,7 @@ class CategoriesScroller extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                     ),
                     child: Center(
-                      child: Text("CHIMO",
+                      child: Text("Learn & Cook",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                         textAlign: TextAlign.center),
                     ),
@@ -511,7 +511,7 @@ class CategoriesScroller extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                     ),
                     child: Center(
-                      child: Text("CHIMO",
+                      child: Text("Brunch with Friends",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                           textAlign: TextAlign.center),
                     ),
@@ -537,7 +537,7 @@ class CategoriesScroller extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                     ),
                     child: Center(
-                      child: Text("CHIMO",
+                      child: Text("Fit Meet & Eat",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                           textAlign: TextAlign.center),
                     ),
