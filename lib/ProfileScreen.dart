@@ -285,7 +285,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                       height: 10,
                                     ),
                                     Icon(
-                                      Icons.ac_unit,
+                                      IconData(0xe621, fontFamily: 'MaterialIcons'),
                                       color: Colors.blueGrey,
                                       size: 24.0,
                                     ),
@@ -295,7 +295,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                       size: 24.0,
                                     ),
                                     Icon(
-                                      Icons.favorite,
+                                      IconData(0xe5f6, fontFamily: 'MaterialIcons'),
                                       color: Colors.blueGrey,
                                       size: 24.0,
                                     ),

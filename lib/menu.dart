@@ -144,7 +144,7 @@ class Menu extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         WidgetSpan(
-                          child: Icon(Icons.ac_unit_sharp, size: 22),
+                          child: Icon(IconData(0xe848, fontFamily: 'MaterialIcons'), size: 22),
                         ),
                         TextSpan(
                             text: '  Log out',
