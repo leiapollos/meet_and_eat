@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:meet_and_eat/ProfileScreen.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -33,7 +34,7 @@ class _MealScreen extends State<MealScreen>{
           }
           if (snapshotUser.connectionState == ConnectionState.done) {
             Map<String, dynamic> dataUser = snapshotUser.data.data();
-            if(snapshotUser.data.exists && dataUser['url'] != null && dataUser['url'] != ""){
+            if(snapshotUser.data.exists && dataUser['url'] != null){
               return ListView(
                 shrinkWrap: true,
                 padding: EdgeInsets.all(0.0),
@@ -65,7 +66,7 @@ class _MealScreen extends State<MealScreen>{
                                 letterSpacing: 0.5,
                               ),
                             ),
-                            Text("by Joana Silva",
+                            Text("by ${dataUser['name']} ${dataUser['lastName']}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
@@ -169,7 +170,7 @@ class _MealScreen extends State<MealScreen>{
                               color: Colors.grey,
                             ),
                             Container(
-                              child: Text('Note from Joana',
+                              child: Text('Note from ${dataUser['name']}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -246,18 +247,26 @@ class _MealScreen extends State<MealScreen>{
                         Positioned(
                           top: 140.0, // (background container size) - (circle height / 2)
                           left: 140,
-                          child: Container(
-                            height: 120.0,
-                            width: 120.0,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.green,
-                                image: DecorationImage(
-                                    image: NetworkImage(dataUser['url']),
-                                    fit: BoxFit.cover
-                                )
-                            ),
+                          child: FlatButton(
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ProfileScreen(uid: widget.uid,)),
+                              );
+                            },
+                            child: Container(
+                              height: 120.0,
+                              width: 120.0,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.green,
+                                  image: DecorationImage(
+                                      image: NetworkImage(dataUser['url'] == "" ? 'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png' : dataUser['url']),
+                                      fit: BoxFit.cover
+                                  )
+                              ),
 
+                            ),
                           ),
                         )
                       ]
@@ -478,20 +487,22 @@ class _MealScreen extends State<MealScreen>{
                       Positioned(
                         top: 140.0, // (background container size) - (circle height / 2)
                         left: 140,
-                        child: Container(
-                          height: 120.0,
-                          width: 120.0,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.green,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
-                                  ),
-                                  fit: BoxFit.cover
-                              )
-                          ),
+                        child: FlatButton(
+                          child: Container(
+                            height: 120.0,
+                            width: 120.0,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.green,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
+                                    ),
+                                    fit: BoxFit.cover
+                                )
+                            ),
 
+                          ),
                         ),
                       )
                     ]
