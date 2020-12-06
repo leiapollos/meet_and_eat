@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meet_and_eat/BookingsScreen.dart';
+import 'package:meet_and_eat/ChatSystem.dart';
 import 'package:meet_and_eat/RateScreen.dart';
 import 'package:meet_and_eat/home_page_content.dart';
 import 'package:meet_and_eat/menu.dart';
@@ -41,7 +42,8 @@ class _HomePage extends State<HomePage> {
           Text(uid)
         ],
       ),*/
-      RatingScreen(uid: uid),
+      ChatSystem(),
+      //RatingScreen(uid: uid),
       BookingsScreen(),
     ];
     return Scaffold(
