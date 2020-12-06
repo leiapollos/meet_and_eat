@@ -145,11 +145,31 @@ class _BookingsScreen extends State<BookingsScreen>{
           if(me == null)
             return Center();
           if(me['meals'].length == 0){
-            return Text("No booked meals!");
+            return Text(
+              "No passed meals!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                height: 1.5,
+                fontSize: 25.0,
+                color: Color(0xff3d405b),
+                letterSpacing: 0.5,
+              ),
+            );
           }
           if(me['meals'].length == 1){
               if(me['meals'][0] == ""){
-                return Text("No booked meals!");
+                return Text(
+                  "No booked meals!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    height: 1.5,
+                    fontSize: 25.0,
+                    color: Color(0xff3d405b),
+                    letterSpacing: 0.5,
+                  ),
+                );
               }
           }
           for(int i = 0; i < me['meals'].length; i++){
@@ -184,7 +204,17 @@ class _BookingsScreen extends State<BookingsScreen>{
               );
             else
               return Center(
-                child: Text("No passed meals!"),
+                child: Text(
+                    "No passed meals!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      height: 1.5,
+                      fontSize: 25.0,
+                      color: Color(0xff3d405b),
+                      letterSpacing: 0.5,
+                    ),
+                  ),
               );
           }
 
