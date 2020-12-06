@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocation/geolocation.dart';
 import 'package:flutter_map/flutter_map.dart';
+import "package:latlong/latlong.dart" as latLng;
 
 class LocationScreen extends StatefulWidget {
   final String uid;
@@ -26,7 +27,8 @@ class _LocationScreen extends State<LocationScreen>{
     final GeolocationResult result =
         await Geolocation.requestLocationPermission(
                 permission: LocationPermission(
-                  android: LocationPermissionAndroid.fine
+                  android: LocationPermissionAndroid.fine,
+                  ios:  LocationPermissionIOS.always,
                 )
              );
 
@@ -48,7 +50,8 @@ class _LocationScreen extends State<LocationScreen>{
     getLocation().then((response) {
       if(response.isSuccessful){
         response.listen((value) {
-          controller.move( latLng.LatLng(value.location.latitude,value.location.longitude), zoom);
+          controller.move(new latLng.LatLng(value.location.latitude, value.location.longitude),
+              15.0);
         });
 
       }
@@ -58,30 +61,22 @@ class _LocationScreen extends State<LocationScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return new FlutterMap(
-      options: new MapOptions(
-        center: new latlng.LatLng(51.5, -0.09),
-        zoom: 13.0,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff3d405b),
+        title: Text('Location'),
+        centerTitle: true,
       ),
-      layers: [
-        new TileLayerOptions(
+      body: new FlutterMap(
+        mapController: controller,
+        options: new MapOptions(center: buildMap(), minZoom: 5.0),
+        layers: [
+          new TileLayerOptions(
             urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             subdomains: ['a', 'b', 'c']
-        ),
-        new MarkerLayerOptions(
-          markers: [
-            new Marker(
-              width: 80.0,
-              height: 80.0,
-              point: new LatLng(51.5, -0.09),
-              builder: (ctx) =>
-              new Container(
-                child: new FlutterLogo(),
-              ),
-            ),
-          ],
-        ),
-      ],
+          )
+        ],
+      ),
     );
   }
 }
