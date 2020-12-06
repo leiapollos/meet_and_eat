@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meet_and_eat/ChatSystem.dart';
+import 'package:meet_and_eat/LocationScreen.dart';
 import 'package:meet_and_eat/ProfileScreen.dart';
 import 'package:meet_and_eat/authentication_service.dart';
 import 'package:provider/provider.dart';
@@ -101,11 +102,17 @@ class _MealScreen extends State<MealScreen>{
                                           size: 24.0,
 
                                         ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                         Icon(
                                           Icons.add_location_rounded,
                                           color: Colors.blueGrey,
                                           size: 24.0,
 
+                                        ),
+                                        SizedBox(
+                                          height: 10,
                                         ),
                                         Icon(
                                           Icons.airline_seat_legroom_normal_sharp,
@@ -140,13 +147,30 @@ class _MealScreen extends State<MealScreen>{
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Text(data['address'],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15.0,
-                                            color: Color(0xff3d405b),
-                                            letterSpacing: 0.5,
-                                          ),
+                                        Row(
+                                          children: [
+                                            Text(data['address'],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15.0,
+                                                color: Color(0xff3d405b),
+                                                letterSpacing: 0.5,
+                                              ),
+                                            ),
+                                            FlatButton(
+                                              onPressed: (){
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(builder: (context) => LocationScreen()),
+                                                );
+                                              },
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: Colors.blueGrey,
+                                                size: 24.0,
+                                              ),
+                                            )
+                                          ],
                                         ),
                                         SizedBox(
                                           height: 5,
