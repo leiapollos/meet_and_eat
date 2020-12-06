@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:meet_and_eat/GetUsers.dart';
 import 'dart:developer';
 
+import 'package:intl/intl.dart';
 import 'MealScreen.dart';
 import 'ProfileScreen.dart';
 
@@ -31,6 +32,7 @@ class _HomePage extends State<HomePage> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final uid = context.watch<AuthenticationService>().getUserId();
@@ -53,10 +55,11 @@ class _HomePage extends State<HomePage> {
         backgroundColor: Color(0xff3d405b),
         title: Text('Meet&Eat'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search),
-              onPressed: (){
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
                 showSearch(context: context, delegate: DataSearch());
-          })
+              })
         ],
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
@@ -83,28 +86,32 @@ class _HomePage extends State<HomePage> {
   }
 }
 
-class DataSearch extends SearchDelegate<String>{
+class DataSearch extends SearchDelegate<String> {
   /// TODO: USE BACKEND DATA AND UPDATE RECENTPEOPLE
-
 
   @override
   List<Widget> buildActions(BuildContext context) {
     // Action for app bar
-   return [IconButton(icon: Icon(Icons.clear), onPressed: (){
-     query = '';
-   })];
+    return [
+      IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+          })
+    ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
     // Leading icon on the of the app bar
-    return IconButton(icon: AnimatedIcon(
-      icon: AnimatedIcons.menu_arrow,
-      progress: transitionAnimation,
-    ),
-     onPressed: (){
-      close(context, null);
-     });
+    return IconButton(
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.menu_arrow,
+          progress: transitionAnimation,
+        ),
+        onPressed: () {
+          close(context, null);
+        });
   }
 
   @override
@@ -117,20 +124,22 @@ class DataSearch extends SearchDelegate<String>{
       ),
     );*/
     print(query);
-    final people = FirebaseFirestore.instance.collection(
-        'profiles').where('name',  isGreaterThanOrEqualTo: query.toString())
+    final people = FirebaseFirestore.instance
+        .collection('profiles')
+        .where('name', isGreaterThanOrEqualTo: query.toString())
         .where('name', isLessThan: query.toString() + 'z');
-    final mealsdb = FirebaseFirestore.instance.collection(
-        'meals').where('mealName',  isGreaterThanOrEqualTo: query.toString())
+    final mealsdb = FirebaseFirestore.instance
+        .collection('meals')
+        .where('mealName', isGreaterThanOrEqualTo: query.toString())
         .where('mealName', isLessThan: query.toString() + 'z');
-
 
     return Column(
       children: <Widget>[
-       Flexible(
+        Flexible(
           child: StreamBuilder(
               stream: people.snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot1) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot1) {
                 if (snapshot1.hasError) {
                   return Text('Something went wrong');
                 }
@@ -143,60 +152,83 @@ class DataSearch extends SearchDelegate<String>{
                   scrollDirection: Axis.vertical,
                   //shrinkWrap: true,
                   itemCount: profiles.length,
-                  itemBuilder: (context, index) =>
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.94,
-                        child: FlatButton(
-                          onPressed: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ProfileScreen(uid: profiles[index].id)),
-                            )
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                  itemBuilder: (context, index) => Container(
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    child: FlatButton(
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProfileScreen(uid: profiles[index].id)),
+                        )
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        elevation: 3,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth:
+                                      MediaQuery.of(context).size.width * 0.28,
+                                  maxHeight:
+                                      MediaQuery.of(context).size.width * 0.28,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(200),
+                                  child: (profiles[index]['url'] != null &&
+                                          profiles[index]['url']
+                                              .toString()
+                                              .isNotEmpty)
+                                      ? Image.network(profiles[index]['url'])
+                                      : NetworkImage(
+                                          'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
+                                        ),
+                                ),
+                              ),
                             ),
-                            color: Colors.white,
-                            elevation: 3,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxWidth: MediaQuery.of(context).size.width * 0.28,
-                                      maxHeight: MediaQuery.of(context).size.width * 0.28,
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(200),
-                                      child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
-                                          ? Image.network(profiles[index]['url']) : NetworkImage(
-                                        'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
-                                      ),
-                                    ),
+                            Expanded(
+                              child: ListTile(
+                                title: Text(
+                                  profiles[index]['name'] +
+                                      " " +
+                                      profiles[index]['lastName'],
+                                  style: const TextStyle(
+                                      fontSize: 19.0,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, top: 5, right: 0, bottom: 0),
+                                  child: Text(
+                                    profiles[index]['age'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 17.0,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
-                                Expanded(
-                                  child: ListTile(title: Text(profiles[index]['name'] + " " + profiles[index]['lastName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
-                                    subtitle: Padding(
-                                      padding: const EdgeInsets.only(left: 0, top: 5, right: 0, bottom: 0),
-                                      child: Text(profiles[index]['age'].toString(), style: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
-                                    ),),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
+                    ),
+                  ),
                 );
               }),
         ),
         Flexible(
           child: StreamBuilder(
               stream: mealsdb.snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot1) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot1) {
                 if (snapshot1.hasError) {
                   return Text('Something went wrong');
                 }
@@ -207,11 +239,141 @@ class DataSearch extends SearchDelegate<String>{
                 final meals = snapshot1.data.docs;
                 print(meals.length);
                 return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  //shrinkWrap: true,
-                  itemCount: meals.length,
-                  itemBuilder: (context, index) =>
-                      Container(
+                    scrollDirection: Axis.vertical,
+                    //shrinkWrap: true,
+                    itemCount: meals.length,
+                    itemBuilder: (context, index) => Center(
+                          child: FlatButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MealScreen(uid: meals[index].id)),
+                              );
+                            },
+                            height: 100,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2.0),
+                              ),
+                              color: Colors.white,
+                              elevation: 0,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    height: 100,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(2),
+                                      child: Image.network(meals[index]
+                                                  ['url'] ==
+                                              ""
+                                          ? "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
+                                          : meals[index]['url']),
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Column(
+                                      children: [
+                                        Center(
+                                          child: Text(meals[index]['mealName'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Color(0xff3d405b),
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Center(
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    WidgetSpan(
+                                                      child: Icon(
+                                                          Icons
+                                                              .access_time_rounded,
+                                                          size: 22),
+                                                    ),
+                                                    TextSpan(
+                                                        //text: meals[index]['date'],
+                                                        text: new DateFormat.yMd()
+                                                            .add_jm()
+                                                            .format(DateTime
+                                                                .parse(meals[
+                                                                        index]
+                                                                    ['date'])),
+                                                        //TODO CHANGE TIME
+                                                        style:
+                                                            TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                height: 1.5,
+                                                                fontSize: 15.5,
+                                                                color: Color(
+                                                                    0xff3d405b),
+                                                                letterSpacing:
+                                                                    0.5)),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  WidgetSpan(
+                                                    child: Icon(
+                                                        Icons
+                                                            .airline_seat_legroom_normal,
+                                                        size: 22),
+                                                  ),
+                                                  TextSpan(
+                                                      //text: meals[index]['date'],
+                                                      text: " " +
+                                                          (meals[index][
+                                                                      'seats'] -
+                                                                  meals[index][
+                                                                      'seats_occupied'])
+                                                              .toString() +
+                                                          " seats available",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          height: 0,
+                                                          fontSize: 18.0,
+                                                          color:
+                                                              Color(0xff3d405b),
+                                                          letterSpacing: 0.5)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                    /*Container(
                         width: MediaQuery.of(context).size.width * 0.95,
                         child: FlatButton(
                           onPressed: () => {
@@ -240,94 +402,24 @@ class DataSearch extends SearchDelegate<String>{
                             ),
                           ),
                         ),
-                      ),
-                );
+                      ),*/
+                    );
               }),
         ),
       ],
     );
-   /* return StreamBuilder<QuerySnapshot>(
-        stream: people.snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot1) {
-          final profiles = snapshot1.data.docs;
-          return StreamBuilder<QuerySnapshot>(
-            stream: mealsdb.snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot2) {
-                if (snapshot1.hasError || snapshot2.hasError) {
-                  return Text('Something went wrong');
-                }
-
-                if (snapshot1.connectionState == ConnectionState.waiting || snapshot2.connectionState == ConnectionState.waiting) {
-                  return Text("Loading");
-                }
-                final meals = snapshot2.data.docs;
-                return Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    //shrinkWrap: true,
-                    itemCount: profiles.length + meals.length,
-                    itemBuilder: (context, index) =>
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          child: FlatButton(
-                            onPressed: () => {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => ProfileScreen(uid: profiles[index].id)),
-                              )
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              color: Colors.white,
-                              elevation: 3,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                        maxWidth: MediaQuery.of(context).size.width * 0.28,
-                                        maxHeight: MediaQuery.of(context).size.width * 0.28,
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(200),
-                                        child: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
-                                            ? Image.network(profiles[index]['url']) : Image.asset('assets/images/chimo.png', fit: BoxFit.fill),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: ListTile(title: Text(profiles[index]['name'] + " " + profiles[index]['lastName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
-                                      subtitle: Padding(
-                                        padding: const EdgeInsets.only(left: 0, top: 5, right: 0, bottom: 0),
-                                        child: Text(profiles[index]['age'].toString(), style: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
-                                      ),),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                  ),
-                );
-              }
-          );
-
-
-        });*/
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     // Suggestion search
-    final people = FirebaseFirestore.instance.collection(
-        'profiles').where('name',  isGreaterThanOrEqualTo: query.toString())
+    final people = FirebaseFirestore.instance
+        .collection('profiles')
+        .where('name', isGreaterThanOrEqualTo: query.toString())
         .where('name', isLessThan: query.toString() + 'z');
-    final mealsdb = FirebaseFirestore.instance.collection(
-        'meals').where('mealName',  isGreaterThanOrEqualTo: query.toString())
+    final mealsdb = FirebaseFirestore.instance
+        .collection('meals')
+        .where('mealName', isGreaterThanOrEqualTo: query.toString())
         .where('mealName', isLessThan: query.toString() + 'z');
 
     return Column(
@@ -335,45 +427,45 @@ class DataSearch extends SearchDelegate<String>{
         Flexible(
           child: StreamBuilder<QuerySnapshot>(
               stream: people.snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Something went wrong');
-              }
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Something went wrong');
+                }
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("Loading");
-              }
-              final profiles = snapshot.data.docs;
-            return ListView.builder(
-              itemBuilder: (context, index) => ListTile(
-              onTap: (){//ON CLICK
-                query = profiles[index]['name'];
-                showResults(context);
-              },
-                leading: Icon(Icons.people),
-                title: RichText(
-                 text: TextSpan(
-                     text: profiles[index]['name'] + " ",
-                     style: TextStyle(
-                       color: Colors.black, fontWeight: FontWeight.bold),
-                      children: [
-                        TextSpan(
-                          text: profiles[index]['lastName'],
-                          style: TextStyle(color: Colors.grey)
-                        )
-                      ]
-                 ),
-                ),
-              ),
-            itemCount: profiles.length,
-          );
-
-  }),
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text("Loading");
+                }
+                final profiles = snapshot.data.docs;
+                return ListView.builder(
+                  itemBuilder: (context, index) => ListTile(
+                    onTap: () {
+                      //ON CLICK
+                      query = profiles[index]['name'];
+                      showResults(context);
+                    },
+                    leading: Icon(Icons.people),
+                    title: RichText(
+                      text: TextSpan(
+                          text: profiles[index]['name'] + " ",
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                          children: [
+                            TextSpan(
+                                text: profiles[index]['lastName'],
+                                style: TextStyle(color: Colors.grey))
+                          ]),
+                    ),
+                  ),
+                  itemCount: profiles.length,
+                );
+              }),
         ),
         Flexible(
           child: StreamBuilder<QuerySnapshot>(
               stream: mealsdb.snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot2) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot2) {
                 if (snapshot2.hasError) {
                   return Text('Something went wrong');
                 }
@@ -384,7 +476,8 @@ class DataSearch extends SearchDelegate<String>{
                 final meals = snapshot2.data.docs;
                 return ListView.builder(
                   itemBuilder: (context, index) => ListTile(
-                    onTap: (){//ON CLICK
+                    onTap: () {
+                      //ON CLICK
                       query = meals[index]['mealName'];
                       showResults(context);
                     },
@@ -396,20 +489,18 @@ class DataSearch extends SearchDelegate<String>{
                               color: Colors.black, fontWeight: FontWeight.bold),
                           children: [
                             TextSpan(
-                                text: (meals[index]['seats'] - meals[index]['seats_occupied']).toString(),
-                                style: TextStyle(color: Colors.grey)
-                            )
-                          ]
-                      ),
+                                text: (meals[index]['seats'] -
+                                        meals[index]['seats_occupied'])
+                                    .toString(),
+                                style: TextStyle(color: Colors.grey))
+                          ]),
                     ),
                   ),
                   itemCount: meals.length,
                 );
-
               }),
         ),
       ],
     );
-  
-}
+  }
 }

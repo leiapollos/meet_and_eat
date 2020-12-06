@@ -487,22 +487,20 @@ class _MealScreen extends State<MealScreen>{
                       Positioned(
                         top: 140.0, // (background container size) - (circle height / 2)
                         left: 140,
-                        child: FlatButton(
-                          child: Container(
-                            height: 120.0,
-                            width: 120.0,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.green,
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
-                                    ),
-                                    fit: BoxFit.cover
-                                )
-                            ),
-
+                        child: Container(
+                          height: 120.0,
+                          width: 120.0,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green,
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                    'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png',
+                                  ),
+                                  fit: BoxFit.cover
+                              )
                           ),
+
                         ),
                       )
                     ]

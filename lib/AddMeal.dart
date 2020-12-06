@@ -154,27 +154,36 @@ class _AddMeal extends State<AddMeal> {
               SizedBox(
                 height: 8.0,
               ),
-              TextField(
-                controller: dateController,
-                onTap: () => _selectDate(context),
-                decoration: InputDecoration(
-                  hintText: 'Add date',
-                  contentPadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                    BorderSide(color: Color(0xff3d405b), width: 1.0),
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                    BorderSide(color: Color(0xff3d405b), width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+              new Theme(
+                data: ThemeData.light().copyWith(
+                  colorScheme: ColorScheme.light().copyWith(
+                    primary: Color(0xff81b29a),
                   ),
                 ),
+                child: new Builder(builder: (context) {
+                  return  TextField(
+                    controller: dateController,
+                    onTap: () => _selectDate(context),
+                    decoration: InputDecoration(
+                      hintText: 'Add date',
+                      contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: Color(0xff3d405b), width: 1.0),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: Color(0xff3d405b), width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                    ),
+                  );
+                })
               ),
               SizedBox(
                 height: 8.0,
