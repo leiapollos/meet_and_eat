@@ -422,9 +422,7 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     image: DecorationImage(
-                        image: NetworkImage(
-                            "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
-                        ),
+                        image: AssetImage("assets/images/image2.jpg"),
                         fit: BoxFit.cover
                     )),
                 child: Padding(
@@ -449,9 +447,8 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     image: DecorationImage(
-                        image: NetworkImage(
-                            "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
-                        ),
+                        image: AssetImage("assets/images/image1.jpg"),
+
                         fit: BoxFit.cover
                     )),
                 child: Padding(
@@ -476,9 +473,7 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     image: DecorationImage(
-                        image: NetworkImage(
-                            "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D"
-                        ),
+                        image: AssetImage("assets/images/image3.jpg"),
                         fit: BoxFit.cover
                     )),
                 child: Padding(
@@ -493,6 +488,58 @@ class CategoriesScroller extends StatelessWidget {
                       child: Text("CHIMO",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                         textAlign: TextAlign.center),
+                    ),
+                  ),
+                ),
+
+              ),
+              Container(
+                width: 150,
+                margin: EdgeInsets.only(right: 10),
+                height: categoryHeight,
+                decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/image4.jpg"),
+                        fit: BoxFit.cover
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: Center(
+                      child: Text("CHIMO",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                          textAlign: TextAlign.center),
+                    ),
+                  ),
+                ),
+
+              ),
+              Container(
+                width: 150,
+                margin: EdgeInsets.only(right: 10),
+                height: categoryHeight,
+                decoration: BoxDecoration(color: Colors.blue.shade400, borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/image5.jpg"),
+                        fit: BoxFit.cover
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: Center(
+                      child: Text("CHIMO",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                          textAlign: TextAlign.center),
                     ),
                   ),
                 ),
