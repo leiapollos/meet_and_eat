@@ -46,7 +46,7 @@ class _BookingsScreen extends State<BookingsScreen>{
                   onPressed: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => passed ? RatingScreen() : MealScreen(uid: mealId)),
+                      MaterialPageRoute(builder: (context) => passed ? RatingScreen(uid: mealId) : MealScreen(uid: mealId)),
                     );
                   },
                   height: 100,
