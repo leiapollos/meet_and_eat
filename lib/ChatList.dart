@@ -34,79 +34,88 @@ class ChatList extends StatelessWidget {
               itemBuilder: (context, index) {
                 if(profiles[index].id == uid)
                   return Center();
-                return FlatButton(
-                  onPressed: () {
-                    //print(profiles[index].id);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ChatSystem(otherName: profiles[index]['name'], otheruid: profiles[index].id, myuid: uid,),),
-                    );
-                  },
-                  child: Container(
+                return Column(
+                  children: [
+                    FlatButton(
+                      onPressed: () {
+                        //print(profiles[index].id);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ChatSystem(otherName: profiles[index]['name'], otheruid: profiles[index].id, myuid: uid,),),
+                        );
+                      },
+                      shape: RoundedRectangleBorder(side: BorderSide(
+                          color: Color(0xfffafafa),
+                          width: 0,
+                          style: BorderStyle.solid
+                      ), borderRadius: BorderRadius.circular(50)),
+                      child: Container(
 
-                    //onPressed:() => {},
-                    width: MediaQuery.of(context).size.width * 0.94,
-                    child: Container(
-                      color: Colors.white,
-                      //elevation: 3,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
+                        //onPressed:() => {},
+                        child: Container(
+                          color: Color(0xfffafafa),
+                          //elevation: 3,
+                          padding: EdgeInsets.all(10.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 10,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              Column(
                                 children: [
-                                  CircleAvatar(
+                                  SizedBox(height: 10,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 45,
+                                        backgroundImage: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
+                                            ? NetworkImage(profiles[index]['url']) : NetworkImage("https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png"),
+                                        backgroundColor: Colors.blue,
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(profiles[index]['name'] + " " + profiles[index]['lastName'],
+                                        style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+
+
+                              /*Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: MediaQuery.of(context).size.width * 0.28,
+                                    maxHeight: MediaQuery.of(context).size.width * 0.28,
+                                  ),
+                                  child: CircleAvatar(
                                     radius: 45,
                                     backgroundImage: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
                                         ? NetworkImage(profiles[index]['url']) : NetworkImage("https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png"),
                                     backgroundColor: Colors.blue,
                                   ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(profiles[index]['name'] + " " + profiles[index]['lastName'],
-                                    style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),
-                                  ),
-                                ],
+                                ),
                               ),
-
+                              Expanded(
+                                child: ListTile(title: Text(profiles[index]['name'] + " " + profiles[index]['lastName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.only(left: 0, top: 5, right: 0, bottom: 0),
+                                    child: Text(profiles[index]['age'].toString(), style: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
+                                  ),),
+                              ),*/
                             ],
                           ),
-                          Divider(
-                            height: 0,
-                            color: Colors.black,
-                          ),
-
-
-                          /*Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxWidth: MediaQuery.of(context).size.width * 0.28,
-                                maxHeight: MediaQuery.of(context).size.width * 0.28,
-                              ),
-                              child: CircleAvatar(
-                                radius: 45,
-                                backgroundImage: (profiles[index]['url'] != null && profiles[index]['url'].toString().isNotEmpty)
-                                    ? NetworkImage(profiles[index]['url']) : NetworkImage("https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png"),
-                                backgroundColor: Colors.blue,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: ListTile(title: Text(profiles[index]['name'] + " " + profiles[index]['lastName'], style: const TextStyle(fontSize: 19.0, fontWeight: FontWeight.w700),),
-                              subtitle: Padding(
-                                padding: const EdgeInsets.only(left: 0, top: 5, right: 0, bottom: 0),
-                                child: Text(profiles[index]['age'].toString(), style: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
-                              ),),
-                          ),*/
-                        ],
+                        ),
                       ),
                     ),
-                  ),
+
+                    Divider(
+                      height: 5,
+                      color: Color(0x1f000000),
+                    ),
+                  ],
                 );
               }
 

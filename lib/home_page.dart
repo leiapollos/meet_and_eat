@@ -53,12 +53,18 @@ class _HomePage extends State<HomePage> {
       drawer: Menu(title: 'Meet&Eat'),
       appBar: AppBar(
         backgroundColor: Color(0xff3d405b),
-        title: Text('Meet&Eat'),
+        title: Text(
+          'Meet&Eat',
+          style: TextStyle(decoration: TextDecoration.none),
+        ),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                showSearch(context: context, delegate: DataSearch());
+                showSearch(
+                  context: context,
+                  delegate: DataSearch(),
+                );
               })
         ],
       ),
