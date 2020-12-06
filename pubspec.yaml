@@ -27,6 +27,10 @@ dependencies:
   flutter_rating_bar: "^3.2.0+1"
   dash_chat: "^1.1.15"
 
+  geolocation: "^1.1.2"
+  flutter_map: "^0.10.1+1"
+  latlng: "^0.0.2"
+
   firebase_core: "^0.5.2"
 
   firebase_auth: "^0.18.0+1"
