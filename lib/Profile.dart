@@ -88,6 +88,148 @@ class Profile extends StatelessWidget {
           if(snapshot.data.exists){
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: Color(0xff3d405b),
+                title: Text(data['name'] + "'s Profile"),
+                centerTitle: true,
+                actions: <Widget>[
+                  /*IconButton(icon: Icon(Icons.arrow_back_sharp),
+                      onPressed: (){
+
+                      })*/
+                ],
+              ),
+              body: Center(
+                child: ListView(
+                  shrinkWrap: true,
+                  //padding: EdgeInsets.all(15.0),
+                  children: <Widget>[
+                    Container(
+                      color: Color(0xfffafafa),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+
+                              child: Container(
+                                width: double.infinity,
+                                height: 210.0,
+                                child: Center(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                          data['url'] == "" ? "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png" : data['url'],
+                                        ),
+                                        radius: 70.0,
+                                      ),
+                                      Text(
+                                        data['name'] + ' ' + data['lastName'],
+                                        style: TextStyle(
+                                          fontSize: 22.0,
+                                          color: Color(0xff3d405b),
+                                          fontWeight: FontWeight.bold,
+                                          height: 1.5,
+                                        ),
+                                      ),
+                                      Text(
+                                        data['location'],///ADD LOCATION DATA
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: Colors.blueGrey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                          ),
+                          Divider(
+                            height: 0,
+                            color: Colors.grey,
+                          ),
+                          Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+
+                                SizedBox(
+                                  width: 50,
+                                ),
+                                Container(
+                                  child: Text('Biography',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      height: 1.5,
+                                      fontSize: 25.0,
+                                      color: Color(0xff3d405b),
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 16.0),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          data['biography'],
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff3d405b),
+                                            letterSpacing: 0.5,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            height: 15,
+                            color: Colors.grey,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            child: Material(
+                              color:Color(0xff81b29a),
+                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              elevation: 5.0,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => RegisterProfile()),
+                                  );
+                                },
+                                minWidth: 200.0,
+                                height: 42.0,
+                                child: Text(
+                                  'Edit Profile',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 58,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+            /*return Scaffold(
+              appBar: AppBar(
                 title: Text('Profile'),
                 backgroundColor: Color(0xff3d405b),
               ),
@@ -123,7 +265,7 @@ class Profile extends StatelessWidget {
                   ],
                 ),
               ),
-            );
+            );*/
           }
           else{
             return Scaffold(
@@ -134,8 +276,7 @@ class Profile extends StatelessWidget {
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: ListView(
                     children: [
                       SizedBox(
                         height: 48.0,
