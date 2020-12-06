@@ -40,7 +40,7 @@ class _HomePageContent extends State<HomePageContent> {
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     image: DecorationImage(
-                        image: NetworkImage(imageUrl),
+                        image: AssetImage("assets/images/${imageUrl}"),
                         fit: BoxFit.cover
                     )
                 ),
@@ -79,7 +79,10 @@ class _HomePageContent extends State<HomePageContent> {
               padding: EdgeInsets.all(0.0),
               shrinkWrap: true,
               children: [
-              getCuisine("Mexian", "https://media.istockphoto.com/photos/picking-slice-of-pepperoni-pizza-picture-id1133727757?k=6&m=1133727757&s=612x612&w=0&h=6wLUhTKLTudlkgLXQxdOZIVr6D9zuIcMJhpgTVmOWMo%3D")
+              getCuisine("Asian", "image1.jpg"),
+              getCuisine("Swedish", "image2.jpg"),
+              getCuisine("English", "image4.jpg"),
+              getCuisine("Greek", "image5.jpg"),
               ],
             ),
           ),
