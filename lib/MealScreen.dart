@@ -74,7 +74,7 @@ class _MealScreen extends State<MealScreen>{
                                 fontWeight: FontWeight.normal,
                                 height: 0.9,
                                 fontSize: 20.0,
-                                color: Colors.blueGrey,
+                                color: Color(0xff3d405b),
                                 letterSpacing: 0.5,
                               ),
                             ),
@@ -218,7 +218,7 @@ class _MealScreen extends State<MealScreen>{
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        fontWeight: FontWeight.w300,
+                                        fontWeight: FontWeight.w400,
                                         color: Color(0xff3d405b),
                                         letterSpacing: 0.5,
                                       ),
@@ -255,7 +255,7 @@ class _MealScreen extends State<MealScreen>{
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        fontWeight: FontWeight.w300,
+                                        fontWeight: FontWeight.w400,
                                         color: Color(0xff3d405b),
                                         letterSpacing: 0.5,
                                       ),

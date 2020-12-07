@@ -235,8 +235,8 @@ class _ProfileScreen extends State<ProfileScreen> {
 
                                   ///ADD LOCATION DATA
                                   style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.blueGrey,
+                                    fontSize: 14.0,
+                                    color: Color(0xff3d405b),
                                   ),
                                 ),
                               ],
@@ -260,8 +260,8 @@ class _ProfileScreen extends State<ProfileScreen> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 20.0,
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xff3d405b),
                                     letterSpacing: 0.5,
                                   ),
                                 ),

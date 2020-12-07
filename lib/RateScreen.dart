@@ -120,10 +120,10 @@ class _RatingScreen extends State<RatingScreen>{
                                    Text(mealData['mealName'],
                                      textAlign: TextAlign.center,
                                      style: TextStyle(
-                                       fontWeight: FontWeight.normal,
+                                       fontWeight: FontWeight.bold,
                                        height: 1.5,
                                        fontSize: 25.0,
-                                       color: Colors.blueGrey,
+                                       color: Color(0xff3d405b),
                                        letterSpacing: 0.5,
                                      ),
                                    ),
@@ -132,8 +132,8 @@ class _RatingScreen extends State<RatingScreen>{
                                      style: TextStyle(
                                        fontWeight: FontWeight.bold,
                                        height: 0.9,
-                                       fontSize: 25.0,
-                                       color: Color(0xff3d405b),
+                                       fontSize: 20.0,
+                                       color: Colors.blueGrey,
                                        letterSpacing: 0.5,
                                      ),
                                    ),
