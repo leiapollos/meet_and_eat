@@ -60,9 +60,9 @@ class _HomePageContent extends State<HomePageContent> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
         children: [
           Text(
               "Nearby",
@@ -73,9 +73,11 @@ class _HomePageContent extends State<HomePageContent> {
             "Cuisines",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
           ),
-          Expanded(
+          ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: 168),
             child: ListView(
               scrollDirection: Axis.horizontal,
+              physics: ClampingScrollPhysics(),
               padding: EdgeInsets.all(0.0),
               shrinkWrap: true,
               children: [
@@ -86,6 +88,47 @@ class _HomePageContent extends State<HomePageContent> {
               ],
             ),
           ),
+          Text(
+            "Covid-19 safety",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 200),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 134.0,
+                    width: 134,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/covid.jpg"),
+                            fit: BoxFit.cover
+                        )
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      "We ask all the cooks and guests to confirm that they free of COVID-19 sysmptoms before attending Meet&Eat event. We also ask participants to limit the physical contact.",
+                      textAlign: TextAlign.center,
+                      maxLines: 7,
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff3d405b),
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+
         ],
       ),
     );
@@ -106,19 +149,21 @@ class _MealsNearby extends State<MealsNearby> {
     final mealsdb = FirebaseFirestore.instance.collection('meals');
     final profiles = FirebaseFirestore.instance.collection('profiles');
 
-    return Expanded(
-      child: StreamBuilder(
-          stream: mealsdb.snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text('Something went wrong');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
-          }
-          final meals = snapshot.data.docs;
-          print(meals.length);
-          return ListView.builder(
+    return StreamBuilder(
+        stream: mealsdb.snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+        final meals = snapshot.data.docs;
+        print(meals.length);
+        return ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 263),
+          child: ListView.builder(
+            physics: ClampingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.all(0.0),
             shrinkWrap: true,
@@ -242,9 +287,9 @@ class _MealsNearby extends State<MealsNearby> {
                     ),
                   ),
                 ),
-          );
-        }
-      ),
+          ),
+        );
+      }
     );
   }
 }
